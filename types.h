@@ -31,8 +31,9 @@ struct Koz
 struct Path
 {
     struct Block bk;
-    double g;
-    double h;
+    double g; // From source
+    double h; // To destination
+    double f; // Current cost
     struct Path *last;
 };
 
@@ -42,7 +43,7 @@ struct Path
  */
 
 struct Node {
-    struct Path *tail;
+    struct Path *cont;
     struct Node *next;
 }
 
