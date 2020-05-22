@@ -7,8 +7,6 @@ class Block
 {
     private:
         struct Coordinate coor;
-        Block *prev;
-        virtual struct Route_Node *trace_back(); // For create route(coordinate only) after A*
         /*
          * Block will be a linked list from destination to source
          *
@@ -20,8 +18,6 @@ class Block
          */
 
     public:
-        virtual inline void dbg_prt();
-        virtual inline void dbg_prt_list();
         virtual Block(struct Coordinate);
         virtual Result *is_reached();
         /*
@@ -30,24 +26,48 @@ class Block
          * Koz: return Fail
          * path: return Reached, and will have a Route as contant
          */
+        virtual inline void dbg_prt();
+        /*
+         * TODO:
+         * will be implement like #if DEBUG 1
+         * ...
+         * impl
+         * ...
+         * #endif
+         */
+        virtual inline void dbg_prt_list();
 };
 
 class Empty : public Block
 {
     private:
     public:
+        Empty();
+        Result *is_reached();
+        inline void dbg_prt();
+        inline void dbg_prt_list();
 }
 
 class Koz : public Bloack
 {
     private:
     public:
+        Koz();
+        Result *is_reached();
+        inline void dbg_prt();
+        inline void dbg_prt_list();
 }
 
-class path : public Block
+class Path : public Block
 {
     private:
+        Block *prev;
+        struct Route_Node *trace_back(); // For create route(coordinate only) after A*
     public:
+        Path();
+        Result *is_reached();
+        inline void dbg_prt();
+        inline void dbg_prt_list();
 }
 
 #endif
