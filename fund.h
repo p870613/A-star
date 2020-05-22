@@ -9,4 +9,5 @@ struct Coordinate
 }
 
 bool is_overlap(struct Coordinate *, struct Coordinate *);
+
 #endif
