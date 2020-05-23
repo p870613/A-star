@@ -3,16 +3,15 @@
 
 #include <stdio.h>
 
-#ifndef DEBUG
-#define DEBUG 1
+// The flag be customize outside
+#ifndef _DBG_
+    #define _DBG_ 1
 #endif
 
-#if DEBUG
-#define debug(fmt, ...) printf(fmt, ##__VA_ARGS__)
-#define dbg_prt_block(bk) _dbg_prt_block(bk)
+#if _DBG_
+    #define dbg(fmt, ...) printf (fmt, ##__VA_ARGS__)
 #else
-#define debug(fmt, ...)
-#define dbg_prt_block(bk)
+    #define dbg(fmt, ...)
 #endif
 
 #endif
