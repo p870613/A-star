@@ -3,6 +3,7 @@
 
 #include "config.h"
 #include "block.h"
+#include "field.h"
 
 struct Stk_Node
 {
@@ -24,8 +25,10 @@ class Stack
 class Game
 {
     private:
-        Block *kiz[X_MAX][Y_MAX][Z_MAX];
+        Field kiz;
         Stack edges;
+        struct Coordinate src;
+        struct Coordinate des;
     public:
         Game(Block **, struct Coordinate, struct Coordinate);
         Result set();
