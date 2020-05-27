@@ -5,10 +5,10 @@ Stack::Stack()
     self.top = NULL;
 }
 
-result *Game::set()
+Result *Game::set()
 {
     Block *des;
-    des = this->get_position(this->des);
+    des = this->kiz.get_position(this->des);
     enum B_TY type;
 
     type = des.type();
