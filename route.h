@@ -5,9 +5,9 @@
 
 struct Route_Node
 {
-    struct Coordinate coor;
+    Coordinate coor;
     struct Route_Node *next;
-}
+};
 
 class Route
 {
@@ -16,6 +16,6 @@ class Route
     public:
         inline void dbg_prt();
         Route(struct Route_Node *);
-}
+};
 
 #endif

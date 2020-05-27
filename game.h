@@ -20,19 +20,19 @@ class Stack
         void insert(Block *edge);
         Path *pop();
         bool is_empty();
-}
+};
 
 class Game
 {
     private:
-        Field kiz;
+        Field_3D *kiz;
         Stack edges;
-        struct Coordinate src;
-        struct Coordinate des;
+        struct Coordinate *src;
+        struct Coordinate *des;
     public:
-        Game(Block **, struct Coordinate, struct Coordinate);
-        Result set();
+        Game(Field_3D *, Coordinate *, Coordinate *); // kiz src des
+        Result *set();
         void next_step();
-}
+};
 
 #endif

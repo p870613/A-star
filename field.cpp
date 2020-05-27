@@ -1,15 +1,17 @@
-#include <cstdlib.h>
+#include <cstdlib>
 #include "field.h"
 #include "debug.h"
+#include "config.h"
 
-using namespace Field_3D;
-
-Field_3D(int *arr)
+Field_3D::Field_3D(int *arr)
 {
+    this->x_sz = X_MAX;
+    this->y_sz = Y_MAX;
+    this->z_sz = Z_MAX;
     // gen_env
 }
 
-bool accessable(struct Coordinate pst)
+bool Field_3D::accessable(Coordinate pst)
 {
 
     if (pst.x >= x_sz ||
@@ -24,7 +26,7 @@ bool accessable(struct Coordinate pst)
     return true;
 }
 
-Block **offset(struct Coordinate pst)
+Block **Field_3D::offset(Coordinate pst)
 {
     if (!this->accessable(pst))
         return NULL;
@@ -35,12 +37,12 @@ Block **offset(struct Coordinate pst)
             + pst.z;
 }
 
-Block *get_position(struct Coordinate pst)
+Block *Field_3D::get_position(Coordinate pst)
 {
     return *(this->offset(pst));
 }
 
-bool set_position(Block *blk, struct Coordinate pst)
+bool Field_3D::set_position(Block *blk, Coordinate pst)
 {
     Block **ptr;
 

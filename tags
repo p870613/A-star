@@ -1,0 +1,71 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+.PHONY	Makefile	/^.PHONY=all, clean$/;"	m
+B_BLOCK	block.h	/^    B_BLOCK,$/;"	e	enum:B_TY
+B_EMPTY	block.h	/^    B_EMPTY,$/;"	e	enum:B_TY
+B_KOZ	block.h	/^    B_KOZ,$/;"	e	enum:B_TY
+B_PATH	block.h	/^    B_PATH$/;"	e	enum:B_TY
+B_TY	block.h	/^enum B_TY {$/;"	g
+Block	block.h	/^class Block$/;"	c
+Coordinate	fund.h	/^class Coordinate$/;"	c
+Empty	block.h	/^class Empty : public Block$/;"	c
+Fail	result.h	/^class Fail : public Result$/;"	c
+Field_3D	field.cpp	/^Field_3D::Field_3D(int *arr)$/;"	f	class:Field_3D
+Field_3D	field.h	/^class Field_3D$/;"	c
+Game	game.cpp	/^Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)$/;"	f	class:Game
+Game	game.h	/^class Game$/;"	c
+Koz	block.h	/^class Koz : public Block$/;"	c
+Path	block.h	/^class Path : public Block$/;"	c
+Reached	result.h	/^class Reached : public Result$/;"	c
+Result	result.h	/^class Result$/;"	c
+Route	route.h	/^class Route$/;"	c
+Route_Node	route.h	/^struct Route_Node$/;"	s
+Stack	game.cpp	/^Stack::Stack()$/;"	f	class:Stack
+Stack	game.h	/^class Stack$/;"	c
+Stk_Node	game.h	/^struct Stk_Node$/;"	s
+X_MAX	config.h	4;"	d
+Y_MAX	config.h	5;"	d
+Z_MAX	config.h	6;"	d
+_CONFIG_H_	config.h	2;"	d
+_DBG_	debug.h	8;"	d
+_DEBUG_H_	debug.h	2;"	d
+_FIELD_H_	field.h	2;"	d
+_FUND_H_	fund.h	2;"	d
+_GAME_H_	game.h	2;"	d
+_RESULT_H_	result.h	2;"	d
+_ROUTE_H_	route.h	2;"	d
+_TYPES_H_	block.h	2;"	d
+accessable	field.cpp	/^bool Field_3D::accessable(Coordinate pst)$/;"	f	class:Field_3D
+coor	block.h	/^        Coordinate coor;$/;"	m	class:Block
+coor	route.h	/^    Coordinate coor;$/;"	m	struct:Route_Node
+dO	Makefile	/^dO=main.o block.o field.o game.o$/;"	m
+dbg	debug.h	12;"	d
+dbg	debug.h	14;"	d
+des	game.h	/^        struct Coordinate *des;$/;"	m	class:Game	typeref:struct:Game::Coordinate
+edge	game.h	/^    Path *edge;$/;"	m	struct:Stk_Node
+edges	game.h	/^        Stack edges;$/;"	m	class:Game
+get_position	field.cpp	/^Block *Field_3D::get_position(Coordinate pst)$/;"	f	class:Field_3D
+kiz	game.h	/^        Field_3D *kiz;$/;"	m	class:Game
+main	main.cpp	/^int main(void)$/;"	f
+next	game.h	/^    struct Stk_Node *next;$/;"	m	struct:Stk_Node	typeref:struct:Stk_Node::Stk_Node
+next	route.h	/^    struct Route_Node *next;$/;"	m	struct:Route_Node	typeref:struct:Route_Node::Route_Node
+offset	field.cpp	/^Block **Field_3D::offset(Coordinate pst)$/;"	f	class:Field_3D
+prev	block.h	/^        Block *prev;$/;"	m	class:Path
+route	result.h	/^        Route *route;$/;"	m	class:Reached
+set	game.cpp	/^Result *Game::set()$/;"	f	class:Game
+set_position	field.cpp	/^bool Field_3D::set_position(Block *blk, Coordinate pst)$/;"	f	class:Field_3D
+src	game.h	/^        struct Coordinate *src;$/;"	m	class:Game	typeref:struct:Game::Coordinate
+src	route.h	/^        struct Route_Node *src;$/;"	m	class:Route	typeref:struct:Route::Route_Node
+top	game.h	/^        struct Stk_Node *top;$/;"	m	class:Stack	typeref:struct:Stack::Stk_Node
+type	block.h	/^        enum B_TY type;$/;"	m	class:Block	typeref:enum:Block::B_TY
+x	fund.h	/^        int x;$/;"	m	class:Coordinate
+x_sz	field.h	/^        int x_sz;$/;"	m	class:Field_3D
+y	fund.h	/^        int y;$/;"	m	class:Coordinate
+y_sz	field.h	/^        int y_sz;$/;"	m	class:Field_3D
+z	fund.h	/^        int z;$/;"	m	class:Coordinate
+z_sz	field.h	/^        int z_sz;$/;"	m	class:Field_3D
+zone	field.h	/^        Block **zone;$/;"	m	class:Field_3D

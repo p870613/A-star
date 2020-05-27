@@ -1,17 +1,25 @@
+#include <cstdlib>
 #include "game.h"
 
 Stack::Stack()
 {
-    self.top = NULL;
+    this->top = NULL;
+}
+
+Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
+{
+
 }
 
 Result *Game::set()
 {
     Block *des;
-    des = this->kiz.get_position(this->des);
     enum B_TY type;
+    Result *ret;
 
-    type = des.type();
+    des = this->kiz.get_position (this->des);
+
+    type = des.get_type ();
     switch (type) {
         case B_BLOCK:
         case B_KOZ:
@@ -21,7 +29,10 @@ Result *Game::set()
             return NULL;
 
         case B_PATH:
-            return new Reached(this->kiz);
+            ret = Reached (des); // Track back and make linked list
+            delete this->kiz;
+            return ret;
     }
-    return new Fail(-1);
+
+    return new Fail (-1);
 }

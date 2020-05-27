@@ -10,12 +10,12 @@ class Field_3D
         int x_sz;
         int y_sz;
         int z_sz;
-        bool accessable(struct Coordinate);
-        Block **offset(struct Coordinate);
+        bool accessable(Coordinate);
+        Block **offset(Coordinate);
     public:
         Field_3D(int *);
-        Block *get_position(struct Coordinate);
-        bool set_position(Block *, struct Coordinate);
+        Block *get_position(Coordinate);
+        bool set_position(Block *, Coordinate);
 };
 
 #endif
