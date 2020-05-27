@@ -3,6 +3,13 @@
 
 #include "result.h"
 
+enum B_TY {
+    B_BLOCK,
+    B_EMPTY,
+    B_KOZ,
+    B_PATH
+};
+
 class Block
 {
     private:
