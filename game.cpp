@@ -11,7 +11,7 @@ Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
     this->kiz = kiz;
     this->src = src;
     this->des = des;
-    kiz->
+    kiz->set_position(new Path(*src), *src);
 }
 
 Result *Game::set()
