@@ -1,7 +1,7 @@
 #ifndef _ROUTE_H_
 #define _ROUTE_H_
 
-#include "fund.h"
+#include "coor.h"
 
 struct Route_Node
 {
