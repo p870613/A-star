@@ -6,13 +6,27 @@ Stack::Stack()
     this->top = NULL;
 }
 
-void Stack::insert(Block *edge)
+void Stack::insert(Path *edge)
 {
     struct Stk_Node **ptr;
-    prt = &(this->top);
-    while (*ptr && ) { // TODO operator override
 
+    ptr= &(this->top);
+    while (*ptr && edge < ptr) {
+        ptr = &((*ptr)->next);
     }
+
+    edge->next = (*ptr)->next;
+    *ptr = edge;
+}
+
+Path *pop()
+{
+    Path *ret;
+    ret = this->top;
+    if (this->top) {
+        this->top = this->top->next;
+    }
+    return ret;
 }
 
 Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
