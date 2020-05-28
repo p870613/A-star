@@ -40,6 +40,7 @@ Block ** generator_evnironment()
     data[source.x][source.y][source.z] = 2;
 
     /*kiz init*/
+    int offest = 0;
     Block **kiz = new Block *[X_MAX * Y_MAX * Z_MAX];
     for(int i = 0; i < X_MAX; i++)
     {
@@ -47,23 +48,21 @@ Block ** generator_evnironment()
         {
             for(int k = 0; k < Z_MAX; k++)
             {
-                int offset = i * (Y_MAX * Z_MAX) + j * Z_MAX + k;
                 if(data[i][j][k] == 0)
                 {
                     Empty *empty = new Empty();
-                    (kiz + offset)  = empty;
+                    *(kiz + offset)  = empty;
                 }
                 else if(data[i][j][k] == 1)
                 {
                     Koz *koz = new Koz();
-                    (kiz + offset) = koz;
+                    *(kiz + offset) = koz;
                 }
                 else
                 {
                      Path *path = new path();
-                     (kiz + n) = path;
+                     *(kiz + offset) = path;
                 }
-                (kiz + offset) -> set_coordinate(i, j, k);
             }
         }
     }
