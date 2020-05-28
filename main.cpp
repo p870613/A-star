@@ -5,14 +5,15 @@ int main(void)
 {
     Game *game;
     Result *ret;
+
     Field_3D *kiz;
     Coordinate *src;
     Coordinate *dst;
 
-    src = new Coordinate(1, 1, 1);
+    kiz = new Field_3D(gen_env());
+    src = new Coordinate(1, 2, 1);
     dst = new Coordinate(1, 1, 1);
 
-    kiz = new Field_3D(NULL);
     game = new Game (kiz, src, dst);
 
     // do A*

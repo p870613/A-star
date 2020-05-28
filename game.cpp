@@ -8,7 +8,10 @@ Stack::Stack()
 
 Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
 {
-
+    this->kiz = kiz;
+    this->src = src;
+    this->des = des;
+    kiz->
 }
 
 Result *Game::set()
@@ -17,7 +20,7 @@ Result *Game::set()
     enum B_TY type;
     Result *ret;
 
-    des = this->kiz.get_position (this->des);
+    des = this->kiz->get_position (this->des);
 
     type = des.get_type ();
     switch (type) {
@@ -40,7 +43,7 @@ Result *Game::set()
 Result *Game::set()
 {
     Block *des;
-    des = this->kiz.get_position(this->des);
+    des = this->kiz->get_position(this->des);
     enum B_TY type;
 
     type = des.type();
