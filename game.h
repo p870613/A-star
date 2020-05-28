@@ -18,7 +18,7 @@ class Stack
 
     public:
         Stack();
-        void insert(Block *edge);
+        void insert(Block *);
         Path *pop();
         bool is_empty();
 };
