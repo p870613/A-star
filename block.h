@@ -15,18 +15,9 @@ class Block
     private:
         Coordinate coor;
         enum B_TY type;
-        /*
-         * Block will be a linked list from destination to source
-         *
-         * Trace_back() is used to create a new list named route whitch only contant coordinate
-         * u
-         * and the list will start from source to destination
-         *
-         * This Route will be saved in Result
-         */
 
     public:
-        Block(Coordinate);
+        Block(int, int, int, enum B_TY);
         virtual Result *is_reached();
         /*
          * TODO:
@@ -51,7 +42,7 @@ class Empty : public Block
 {
     private:
     public:
-        Empty();
+        Empty(Coordinate);
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
@@ -61,7 +52,7 @@ class Koz : public Block
 {
     private:
     public:
-        Koz();
+        Koz(Coordinate);
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
@@ -71,9 +62,18 @@ class Path : public Block
 {
     private:
         Block *prev;
+        /*
+         * Path will be a linked list from destination to source
+         *
+         * Trace_back() is used to create a new list named route whitch only contant coordinate
+         * u
+         * and the list will start from source to destination
+         *
+         * This Route will be saved in Result
+         */
         Route_Node *trace_back(); // For create route(coordinate only) after A*
     public:
-        Path();
+        Path(Coordinate);
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();

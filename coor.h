@@ -11,4 +11,5 @@ class Coordinate
 };
 // TODO overide equal
 
+
 #endif
