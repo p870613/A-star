@@ -3,12 +3,12 @@
 #include "debug.h"
 #include "config.h"
 
-Field_3D::Field_3D(int *arr)
+Field_3D::Field_3D()
 {
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
-    // gen_env
+    this->zone = gen_evn();
 }
 
 bool Field_3D::accessable(Coordinate pst)
