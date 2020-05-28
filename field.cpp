@@ -8,7 +8,7 @@ Field_3D::Field_3D(int *arr)
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
-    // gen_env
+    this->zone = gen_evn();
 }
 
 bool Field_3D::accessable(Coordinate pst)
