@@ -3,12 +3,12 @@
 #include "debug.h"
 #include "config.h"
 
-Field_3D::Field_3D(int *arr)
+Field_3D::Field_3D()
 {
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
-    this->init_zone(arr);
+    this->zone = gen_evn();
 }
 
 bool Field_3D::accessable(Coordinate pst)
@@ -35,21 +35,6 @@ Block **Field_3D::offset(Coordinate pst)
             + pst.x * this->y_sz * this->z_sz
             + pst.y * this->z_sz
             + pst.z;
-}
-
-gen_zone(int *arr)
-{
-    int range;
-    range = x_sz * y_sz * z_sz;
-    this->zone = new Block*[range];
-    for (int i=0; i<range; i++) {
-        Block *cur_blk;
-        if (arr[i] == 1) {
-            cur_blk = new Koz()
-        } else {
-
-        }
-    }
 }
 
 Block *Field_3D::get_position(Coordinate pst)
