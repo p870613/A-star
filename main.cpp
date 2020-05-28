@@ -10,7 +10,7 @@ int main(void)
     Coordinate *src;
     Coordinate *dst;
 
-    kiz = new Field_3D(gen_env());
+    kiz = new Field_3D();
     src = new Coordinate(1, 2, 1);
     dst = new Coordinate(1, 1, 1);
 

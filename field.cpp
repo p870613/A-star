@@ -3,7 +3,7 @@
 #include "debug.h"
 #include "config.h"
 
-Field_3D::Field_3D(int *arr)
+Field_3D::Field_3D()
 {
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
