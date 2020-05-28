@@ -3,10 +3,18 @@
 
 #include "result.h"
 
+enum B_TY {
+    B_BLOCK,
+    B_EMPTY,
+    B_KOZ,
+    B_PATH
+};
+
 class Block
 {
     private:
-        struct Coordinate coor;
+        Coordinate coor;
+        enum B_TY type;
         /*
          * Block will be a linked list from destination to source
          *
@@ -18,7 +26,7 @@ class Block
          */
 
     public:
-        virtual Block(struct Coordinate);
+        Block(Coordinate);
         virtual Result *is_reached();
         /*
          * TODO:
@@ -36,6 +44,7 @@ class Block
          * #endif
          */
         virtual inline void dbg_prt_list();
+        enum B_TY get_type();
 };
 
 class Empty : public Block
@@ -46,9 +55,9 @@ class Empty : public Block
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-}
+};
 
-class Koz : public Bloack
+class Koz : public Block
 {
     private:
     public:
@@ -56,18 +65,18 @@ class Koz : public Bloack
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-}
+};
 
 class Path : public Block
 {
     private:
         Block *prev;
-        struct Route_Node *trace_back(); // For create route(coordinate only) after A*
+        Route_Node *trace_back(); // For create route(coordinate only) after A*
     public:
         Path();
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-}
+};
 
 #endif

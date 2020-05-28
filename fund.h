@@ -1,13 +1,14 @@
 #ifndef _FUND_H_
 #define _FUND_H_
 
-struct Coordinate
+class Coordinate
 {
-    int x;
-    int y;
-    int z;
-}
-
-bool is_overlap(struct Coordinate *, struct Coordinate *);
+    public:
+        int x;
+        int y;
+        int z;
+        Coordinate(int, int, int);
+};
+// TODO overide equal
 
 #endif
