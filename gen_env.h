@@ -1,6 +1,7 @@
 #ifndef _GEN_EVN_H_
 #define _GEN_EVN_H_
 
+#include "block.h"
 
 int min_index[9][3];
 int max_index[9][3];
@@ -14,7 +15,7 @@ double min[9][3] = {{10.75, -4.9, 4.8},
                      {10.95, -8.4, 4.9},
                      {11.05, -8.9, 4.2},
                      {10.45, -9.1, 4.6}};
-                     
+
 double max[9][3] = {{10.95, -4.7, 5.0},
                      {11.95, -6.4, 5.9},
                      {10.85, -7.1, 5.9},
@@ -24,7 +25,7 @@ double max[9][3] = {{10.95, -4.7, 5.0},
                      {11.15, -8.2, 5.1},
                      {11.25, -8.7, 4.4},
                      {10.65, -8.9, 4.8}};
-                     
-class Block **** generator_evnironment(struct Coordinate);
+
+Block **gen_env();
 
 #endif
