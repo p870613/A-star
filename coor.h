@@ -12,6 +12,8 @@ class Coordinate
     public:
         Coordinate(int, int, int);
         Coordinate *get_adjs();
+        bool operator>(Coordinate);
+        int offset(int, int);
 };
 // TODO overide equal
 

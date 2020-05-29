@@ -11,10 +11,9 @@ class Field_3D
         int y_sz;
         int z_sz;
         bool accessable(Coordinate);
-        int offset(Coordinate);
-        void init_zone(int *);
+        Block **offset(Coordinate);
     public:
-        Field_3D(int *);
+        Field_3D();
         Block *get_position(Coordinate);
         bool set_position(Block *, Coordinate);
 };
