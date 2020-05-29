@@ -7,11 +7,12 @@ typedef unsigned int dist_t;
 
 class Block
 {
-    private:
+    protected:
         Coordinate coor;
 
     public:
         Block(Coordinate);
+        Coordinate get_coor();
         virtual Result *is_reached();
         /*
          * TODO:
