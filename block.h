@@ -11,7 +11,7 @@ class Block
         Coordinate coor;
 
     public:
-        Block(int, int, int, enum B_TY);
+        Block(Coordinate);
         virtual Result *is_reached();
         /*
          * TODO:

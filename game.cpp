@@ -2,6 +2,15 @@
 #include "game.h"
 #include "debug.h"
 
+static struct Stk_Node *new_sn(Path *edge, struct Stk_Node *next)
+{
+    struct Stk_Node *ret;
+    ret = new struct Stk_Node;
+    ret->edge = edge;
+    ret->next = next;
+    return ret;
+}
+
 Stack::Stack()
 {
     this->top = NULL;
@@ -12,21 +21,24 @@ void Stack::insert(Path *edge)
     struct Stk_Node **ptr;
 
     ptr= &(this->top);
-    while (*ptr && edge < ptr) {
+    while (*ptr && edge < (*ptr)->edge) {
         ptr = &((*ptr)->next);
     }
-
-    edge->next = (*ptr)->next;
-    *ptr = edge;
+    *ptr = new_sn (edge, (*ptr)->next);
 }
 
 Path *pop()
 {
     Path *ret;
+    struct Stk_Node *buf;
 
-    ret = this->top;
+    ret = NULL;
     if (this->top) {
+        buf = this->top;
         this->top = this->top->next;
+        ret = buf->edge;
+        delete buf;
+        buf = NULL;
     }
 
     return ret;
