@@ -2,25 +2,23 @@
 #include "field.h"
 #include "debug.h"
 #include "config.h"
+#include "gen_env.h"
 
 Field_3D::Field_3D()
 {
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
-    this->zone = gen_evn();
+    this->zone = gen_env();
 }
 
 bool Field_3D::accessable(Coordinate pst)
 {
+    Coordinate max(this->x_sz, this->y_sz, this->z_sz);
+    Coordinate min(0, 0, 0);
 
-    if (pst.x >= x_sz ||
-        pst.y >= y_sz ||
-        pst.z >= z_sz ||
-        pst.x < 0     ||
-        pst.y < 0     ||
-        pst.z < 0) {
-        dbg("Access over size, x: %d, y: %d, z: %d\n", pst.x, pst.y, pst.z);
+    if (min > pst || pst > max) {
+        dbg("Access over size\n");
         return false;
     }
     return true;
@@ -31,10 +29,7 @@ Block **Field_3D::offset(Coordinate pst)
     if (!this->accessable(pst))
         return NULL;
 
-    return this->zone
-            + pst.x * this->y_sz * this->z_sz
-            + pst.y * this->z_sz
-            + pst.z;
+    return this->zone + pst.offset(this->y_sz, this->z_sz);
 }
 
 Block *Field_3D::get_position(Coordinate pst)
