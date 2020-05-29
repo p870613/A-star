@@ -69,7 +69,7 @@ class Path : public Block
          */
         Route_Node *trace_back(); // For create route(coordinate only) after A*
     public:
-        Path(Coordinate);
+        Path(Coordinate, Block*, dist_t, dist_t);
         Result *is_reached();
         dist_t get_g();
         inline void dbg_prt();
