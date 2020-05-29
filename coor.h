@@ -2,6 +2,7 @@
 #define _FUND_H_
 
 #define ADJ_SZ 26
+
 class Coordinate
 {
     private:

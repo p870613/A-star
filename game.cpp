@@ -61,12 +61,12 @@ void Game::next_step()
     dist_t cur_g;
     Coordinate *adjs;
 
+    cur_edge = this->kiz->pop();
     if (!cur_edge) {
         dbg("Stack is empty");
         return;
     }
 
-    cur_edge = this->kiz->pop();
     cur_g = cur_edge->get_g();
     adjs = cur_edge->get_adjs();
 
