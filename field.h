@@ -16,6 +16,8 @@ class Field_3D
         Field_3D();
         Block *get_position(Coordinate);
         bool set_position(Block *, Coordinate);
+        void update(Block *result);
+        void update(Block *);
 };
 
 #endif
