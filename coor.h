@@ -10,7 +10,7 @@ class Coordinate
         int z;
     public:
         Coordinate(int, int, int);
-        get_adjs();
+        Coordinate *get_adjs();
 };
 // TODO overide equal
 
