@@ -48,3 +48,10 @@ bool Field_3D::set_position(Block *blk, Coordinate pst)
     }
     return true;
 }
+
+void Field_3D::update(Block *blk)
+{
+    Coordinate posi;
+    posi = blk->get_coor();
+
+}
