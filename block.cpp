@@ -28,4 +28,18 @@ Path* Path::update(Path* prev, Coordinate* des)
     return this 
 }
 
+/*
+Block::Block(Coordinate posi)
+{
+    this->coor = posi;
+}
+*/
 
+Empty::Empty(Coordinate posi) : Block(posi);
+
+Koz::Koz(Coordinate posi) : Block(posi);
+
+
+Path::Path(Coordinate posi, Block *prev, dist_t g, dist_t h) : Block(posi)
+{
+}
