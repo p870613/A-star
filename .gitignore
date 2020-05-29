@@ -4,4 +4,4 @@
 !.gitignore
 !Makefile
 !README*
-test.cpp
+test*
