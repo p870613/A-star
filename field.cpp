@@ -51,7 +51,9 @@ bool Field_3D::set_position(Block *blk, Coordinate pst)
 
 void Field_3D::update(Block *blk)
 {
-    Coordinate posi;
-    posi = blk->get_coor();
-
+    Coordinate pos;
+    pos = blk->get_coor();
+    int offset = pos->offset(Y_MAX, Z_MAX);
+    // not sure
+    this -> kiz -> (zone + offset) = blk;
 }

@@ -2,7 +2,7 @@
 #define _TYPES_H_
 
 #include "result.h"
-
+#include "coor.h"
 typedef unsigned int dist_t;
 
 class Block
@@ -30,6 +30,8 @@ class Block
          * #endif
          */
         virtual inline void dbg_prt_list();
+        virtual Path* update(Path* , Coordinate* );
+
 };
 
 class Empty : public Block
@@ -39,7 +41,7 @@ class Empty : public Block
         Empty(Coordinate);
         Result *is_reached();
         inline void dbg_prt();
-        inline void dbg_prt_list();
+        Path* update(Path* ,Coordinate* );
 };
 
 class Koz : public Block
@@ -50,6 +52,7 @@ class Koz : public Block
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
+        Path* update(Path* , Coordinate* );
 };
 
 class Path : public Block
@@ -70,10 +73,13 @@ class Path : public Block
         Route_Node *trace_back(); // For create route(coordinate only) after A*
     public:
         Path(Coordinate);
+        Path(Coordinate, Path*, dist_t, dist_t);
         Result *is_reached();
         dist_t get_g();
         inline void dbg_prt();
         inline void dbg_prt_list();
+        Path* update(Path*, Coordinate* );
+
 };
 
 #endif

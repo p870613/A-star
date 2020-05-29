@@ -14,6 +14,7 @@ class Coordinate
         Coordinate *get_adjs();
         bool operator>(Coordinate);
         int offset(int, int);
+        int euc_dis(Coordinate);
 };
 // TODO overide equal
 
