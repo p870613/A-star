@@ -47,37 +47,32 @@ Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
 Result *Game::set()
 {
     Block *des;
-    enum B_TY type;
     Result *ret;
 
     des = this->kiz->get_position (*(this->des));
+    ret = des->reached();
 
-    type = des.get_type ();
-    switch (type) {
-        case B_BLOCK:
-        case B_KOZ:
-            return new Fail (type);
-
-        case B_EMPTY:
-            return NULL;
-
-        case B_PATH:
-            ret = Reached (des); // Track back and make linked list
-            delete this->kiz;
-            return ret;
-    }
-
-    return new Fail (-1);
+    return ret;
 }
 
 void Game::next_step()
 {
     Path *cur_edge;
+    dist_t cur_g;
+    Coordinate *adjs;
+
     cur_edge = this->kiz->pop();
     if (!cur_edge) {
         dbg("Stack is empty");
-    } else {
-        cur_edge->update_adj();
-        // if update then push into stack
+        return;
+    }
+
+    cur_g = cur_edge->get_g();
+    adjs = cur_edge->get_adjs();
+
+    for (int i=0; i<ADJ_SZ; i++) {
+        Block *next_edge;
+        next_edge = this->kiz->get_position(adjs[i]);
+        next_edge->update(cur_edge, this->kiz, this->edges);
     }
 }

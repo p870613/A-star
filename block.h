@@ -3,18 +3,12 @@
 
 #include "result.h"
 
-enum B_TY {
-    B_BLOCK,
-    B_EMPTY,
-    B_KOZ,
-    B_PATH
-};
+typedef unsigned int dist_t;
 
 class Block
 {
     private:
         Coordinate coor;
-        enum B_TY type;
 
     public:
         Block(int, int, int, enum B_TY);
@@ -35,7 +29,6 @@ class Block
          * #endif
          */
         virtual inline void dbg_prt_list();
-        enum B_TY get_type();
 };
 
 class Empty : public Block
@@ -62,6 +55,8 @@ class Path : public Block
 {
     private:
         Block *prev;
+        dist_t g; // from source
+        dist_t h; // to destination
         /*
          * Path will be a linked list from destination to source
          *
@@ -75,6 +70,7 @@ class Path : public Block
     public:
         Path(Coordinate);
         Result *is_reached();
+        dist_t get_g();
         inline void dbg_prt();
         inline void dbg_prt_list();
 };
