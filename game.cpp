@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include "game.h"
+#include "debug.h"
 
 Stack::Stack()
 {
@@ -22,10 +23,12 @@ void Stack::insert(Path *edge)
 Path *pop()
 {
     Path *ret;
+
     ret = this->top;
     if (this->top) {
         this->top = this->top->next;
     }
+
     return ret;
 }
 
@@ -47,7 +50,7 @@ Result *Game::set()
     enum B_TY type;
     Result *ret;
 
-    des = this->kiz->get_position (this->des);
+    des = this->kiz->get_position (*(this->des));
 
     type = des.get_type ();
     switch (type) {
@@ -67,23 +70,14 @@ Result *Game::set()
     return new Fail (-1);
 }
 
-Result *Game::set()
+void Game::next_step()
 {
-    Block *des;
-    des = this->kiz->get_position(this->des);
-    enum B_TY type;
-
-    type = des.type();
-    switch (type) {
-        case B_BLOCK:
-        case B_KOZ:
-            return new Fail (type);
-
-        case B_EMPTY:
-            return NULL;
-
-        case B_PATH:
-            return new Reached(this->kiz);
+    Path *cur_edge;
+    cur_edge = this->kiz->pop();
+    if (!cur_edge) {
+        dbg("Stack is empty");
+    } else {
+        cur_edge->update_adj();
+        // if update then push into stack
     }
-    return new Fail(-1);
 }
