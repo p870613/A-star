@@ -3,8 +3,10 @@
 
 #include "result.h"
 #include "coor.h"
-typedef unsigned int dist_t;
-
+#include "config.h"
+class Path;
+class Empty;
+class Koz;
 class Block
 {
     protected:
@@ -30,7 +32,7 @@ class Block
          * #endif
          */
         virtual inline void dbg_prt_list();
-        virtual Path* update(Path* , Coordinate* );
+        virtual Block* update(Block* , Coordinate* );
 
 };
 
@@ -41,7 +43,7 @@ class Empty : public Block
         Empty(Coordinate);
         Result *is_reached();
         inline void dbg_prt();
-        Path* update(Path* ,Coordinate* );
+        Block* update(Block* ,Coordinate* );
 };
 
 class Koz : public Block
@@ -52,7 +54,7 @@ class Koz : public Block
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-        Path* update(Path* , Coordinate* );
+        Block* update(Block* , Coordinate* );
 };
 
 class Path : public Block
@@ -78,7 +80,7 @@ class Path : public Block
         dist_t get_g();
         inline void dbg_prt();
         inline void dbg_prt_list();
-        Path* update(Path*, Coordinate* );
+        Block* update(Block*, Coordinate* );
 
 };
 

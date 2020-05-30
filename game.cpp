@@ -27,7 +27,7 @@ void Stack::insert(Path *edge)
     *ptr = new_sn (edge, (*ptr)->next);
 }
 
-Path *pop()
+Path* Stack::pop()
 {
     Path *ret;
     struct Stk_Node *buf;
@@ -53,7 +53,7 @@ Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
     this->src = src;
     this->des = des;
     kiz->set_position(src_p, *src);
-    this->edges->push(src_p);
+    (this->edges).insert(src_p);
 }
 
 Result *Game::set()
@@ -62,7 +62,7 @@ Result *Game::set()
     Result *ret;
 
     des = this->kiz->get_position (*(this->des));
-    ret = des->reached();
+    ret = des->is_reached();
 
     return ret;
 }
@@ -73,7 +73,7 @@ void Game::next_step()
     dist_t cur_g;
     Coordinate *adjs;
 
-    cur_edge = this->kiz->pop();
+    cur_edge = (this->edges).pop();
     if (!cur_edge) {
         dbg("Stack is empty");
         return;
@@ -88,10 +88,10 @@ void Game::next_step()
         next_edge = this->kiz->get_position(adjs[i]);//block
         if(next_edge == NULL)
             continue;
-        result = next_edge->update(cur_edge, *(this->des)); // return path if next is path or empty
+        result = next_edge->update(cur_edge, this->des); // return path if next is path or empty
         if (result) {
             this->kiz->update(result);
-            this->edges->insert(result);
+            (this->edges).insert(result);
             delete next_edge;
             next_edge = NULL;
         }
