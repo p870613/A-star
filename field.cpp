@@ -51,7 +51,8 @@ bool Field_3D::set_position(Block *blk, Coordinate pst)
 
 void Field_3D::update(Block *blk)
 {
-    Coordinate pos;
-    pos = blk->get_coor();
+    const Coordinate pos = blk->get_coor();
     this -> set_position(blk, pos);
+    delete blk;
+    blk = NULL;
 }

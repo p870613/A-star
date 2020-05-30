@@ -10,10 +10,10 @@ class Result
         virtual Route *get();
 };
 
-class Fail : public Result
+class Koz_fail : public Result
 {
     public:
-        Fail(int);
+        Koz_fail();
         Route *get(); // TODO: debug print Fail then return NULL
 };
 
@@ -22,7 +22,7 @@ class Reached : public Result
     private:
         Route *route;
     public:
-        Reached();
+        Reached(Route *);
         Route *get(); // TODO: debug print the route then return it
 };
 
