@@ -84,7 +84,7 @@ void Game::next_step()
 
     for (int i=0; i<ADJ_SZ; i++) {
         Block *next_edge;
-        Block *result;
+        Path *result;
         next_edge = this->kiz->get_position(adjs[i]);//block
         if(next_edge == NULL)
             continue;

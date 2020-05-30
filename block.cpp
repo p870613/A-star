@@ -4,7 +4,7 @@ Coordinate Block::get_coor()
     return this -> coor;
 }
 
-Block* Empty::update(Block* prev, Coordinate* des)
+Path* Empty::update(Path* prev, Coordinate* des)
 {
     int g = prev -> g + 1;
     int h =  des -> euc_dis(this -> get_coor());
@@ -12,13 +12,13 @@ Block* Empty::update(Block* prev, Coordinate* des)
     return new_path;
 }
 
-Block* Koz::update(Block* prev, Coordinate* des)
+Path* Koz::update(Path* prev, Coordinate* des)
 {
     return NULL;
 }
 //issue '>' or '>='
 //compare two path and then return cost less
-Block* Path::update(Block* prev, Coordinate* des)
+Path* Path::update(Path* prev, Coordinate* des)
 {
     if((this -> g) > (prev -> g + 1))
     {
