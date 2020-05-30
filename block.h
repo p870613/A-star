@@ -32,7 +32,7 @@ class Block
          * #endif
          */
         virtual inline void dbg_prt_list();
-        virtual Path* update(Path* , Coordinate* );
+        virtual Path* update(Path* , Coordinate*);
 
 };
 
@@ -43,7 +43,7 @@ class Empty : public Block
         Empty(const Coordinate);
         Result *is_reached();
         inline void dbg_prt();
-        Path* update(Path* ,Coordinate* );
+        Path* update(Path* ,Coordinate*);
 };
 
 class Koz : public Block
@@ -54,13 +54,13 @@ class Koz : public Block
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-        Path* update(Path* , Coordinate* );
+        Path* update(Path* , Coordinate*);
 };
 
 class Path : public Block
 {
     private:
-        Block *prev;
+        Path *prev;
         dist_t g; // from source
         dist_t h; // to destination
         /*
@@ -72,7 +72,7 @@ class Path : public Block
          *
          * This Route will be saved in Result
          */
-        Route_Node *trace_back(); // For create route(coordinate only) after A*
+        struct Route_Node *trace_back(struct Route_Node *); // For create route(coordinate only) after A*
     public:
         Path(Coordinate);
         Path(const Coordinate, Path*, dist_t, dist_t);
@@ -82,7 +82,7 @@ class Path : public Block
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-        Path* update(Path*, Coordinate);
+        Path* update(Path*, Coordinate*);
 };
 
 #endif
