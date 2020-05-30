@@ -86,14 +86,15 @@ void Game::next_step()
         Block *next_edge;
         Block *result;
         next_edge = this->kiz->get_position(adjs[i]);//block
+
         if(next_edge == NULL)
             continue;
+
         result = next_edge->update(cur_edge, *(this->des)); // return path if next is path or empty
         if (result) {
             this->kiz->update(result);
             this->edges->insert(result);
-            delete next_edge;
-            next_edge = NULL;
         }
+        result = NULL;
     }
 }

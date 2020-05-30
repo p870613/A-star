@@ -11,7 +11,7 @@ class Block
         Coordinate coor;
 
     public:
-        Block(Coordinate);
+        Block(const Coordinate);
         Coordinate get_coor();
         virtual Result *is_reached();
         /*
@@ -38,7 +38,7 @@ class Empty : public Block
 {
     private:
     public:
-        Empty(Coordinate);
+        Empty(const Coordinate);
         Result *is_reached();
         inline void dbg_prt();
         Path* update(Path* ,Coordinate* );
@@ -48,7 +48,7 @@ class Koz : public Block
 {
     private:
     public:
-        Koz(Coordinate);
+        Koz(const Coordinate);
         Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
@@ -73,13 +73,14 @@ class Path : public Block
         Route_Node *trace_back(); // For create route(coordinate only) after A*
     public:
         Path(Coordinate);
-        Path(Coordinate, Path*, dist_t, dist_t);
-        Result *is_reached();
+        Path(const Coordinate, Path*, dist_t, dist_t);
+        bool operator>(Path);
         dist_t get_g();
+        Coordinate *get_adjs();
+        Result *is_reached();
         inline void dbg_prt();
         inline void dbg_prt_list();
-        Path* update(Path*, Coordinate* );
-
+        Path* update(Path*, Coordinate);
 };
 
 #endif
