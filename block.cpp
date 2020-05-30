@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "block.h"
 
 Coordinate Block::get_coor()
@@ -14,14 +15,14 @@ Empty::Empty(Coordinate posi) : Block(posi){}
 
 Koz::Koz(Coordinate posi) : Block(posi){}
 
-Path::Path(const Coordinate posi, Block *prev, dist_t g, dist_t h) : Block(posi)
+Path::Path(const Coordinate posi, Path *prev, dist_t g, dist_t h) : Block(posi)
 {
     this->prev = prev;
     this->g = g;
     this->h = h;
 }
 
-Route_Node *Path::trace_back(Route_Node *prev)
+struct Route_Node *Path::trace_back(struct Route_Node *prev)
 {
     struct Route_Node *cur;
     cur = new struct Route_Node;
@@ -72,8 +73,8 @@ Result *Path::is_reached()
 
 Path* Empty::update(Path* prev, Coordinate* des)
 {
-    int g = prev -> g + 1;
-    int h =  des -> euc_dis(this -> get_coor());
+    const int g = prev -> get_g() + 1;
+    const int h = des -> euc_dis(this -> get_coor());
 
     Path *new_path = new Path(this->get_coor(), prev, g, h);
 
@@ -85,7 +86,6 @@ Path* Koz::update(Path* prev, Coordinate* des)
     return NULL;
 }
 
-//issue '>' or '>='
 //compare two path and then return cost less
 Path* Path::update(Path* prev, Coordinate* des)
 {
@@ -93,7 +93,7 @@ Path* Path::update(Path* prev, Coordinate* des)
 
     if((this -> g) > (prev -> g + 1))
     {
-        ret = new Path(this->prev, prev, this->g + 1, this->h);
+        ret = new Path(this->coor, prev, this->g + 1, this->h);
     }
 
     return ret;
