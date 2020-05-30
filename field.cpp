@@ -53,7 +53,5 @@ void Field_3D::update(Block *blk)
 {
     Coordinate pos;
     pos = blk->get_coor();
-    int offset = pos->offset(Y_MAX, Z_MAX);
-    // not sure
-    this -> kiz -> (zone + offset) = blk;
+    this -> set_position(blk, pos);
 }
