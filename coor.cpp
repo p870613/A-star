@@ -26,10 +26,10 @@ int Coordinate::offset(int y_sz, int z_sz)
 
 // calulate coordinate to coordinate distance
 // issue int ?? float??
-int Coordinate::euc_dis(Coordinate des)
+dist_t Coordinate::euc_dis(Coordinate des)
 {
-    int cost_x = (this -> x) - (des -> x);
-    int cost_y = (this -> y) - (des -> y);
-    int cost_z = (this -> z) - (des -> z);
+    dist_t cost_x = (this -> x) - (des.x);
+    dist_t cost_y = (this -> y) - (des.y);
+    dist_t cost_z = (this -> z) - (des.z);
     return int(sqrt(cost_x * cost_x + cost_y * cost_y + cost_z * cost_z));
 }

@@ -5,4 +5,5 @@
 #define Y_MAX 700
 #define Z_MAX 200
 
+typedef unsigned int dist_t;
 #endif

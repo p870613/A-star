@@ -3,7 +3,7 @@
 #include "debug.h"
 #include "config.h"
 #include "gen_env.h"
-
+#include "block.h"
 Field_3D::Field_3D()
 {
     this->x_sz = X_MAX;

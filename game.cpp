@@ -93,7 +93,7 @@ void Game::next_step()
         result = next_edge->update(cur_edge, *(this->des)); // return path if next is path or empty
         if (result) {
             this->kiz->update(result);
-            this->edges->insert(result);
+            this->edges.insert(result);
         }
         result = NULL;
     }

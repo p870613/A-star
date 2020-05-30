@@ -3,8 +3,10 @@
 
 #include "result.h"
 #include "coor.h"
-typedef unsigned int dist_t;
-
+#include "config.h"
+class Path;
+class Empty;
+class Koz;
 class Block
 {
     protected:

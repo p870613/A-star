@@ -13,7 +13,7 @@ class Result
 class Koz_fail : public Result
 {
     public:
-        Fail();
+        Koz_fail();
         Route *get(); // TODO: debug print Fail then return NULL
 };
 
