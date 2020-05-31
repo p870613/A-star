@@ -16,11 +16,11 @@ Field_3D::Field_3D()
 
 bool Field_3D::accessable(Coordinate pst)
 {
-    Coordinate max(this->x_sz, this->y_sz, this->z_sz);
+    Coordinate max(this->x_sz-1, this->y_sz-1, this->z_sz-1);
     Coordinate min(0, 0, 0);
 
     if (min > pst || pst > max) {
-        dbg("Access over size\n");
+        //dbg("Access over size\n");
         return false;
     }
     return true;

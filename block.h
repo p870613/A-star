@@ -37,7 +37,7 @@ class Block
         //virtual inline void dbg_prt_list();
         virtual Path* update(Path* , Coordinate*);
         virtual void dbg_info();
-        virtual char dbg_char();
+        virtual double dbg_char();
 };
 
 class Empty : public Block
@@ -48,7 +48,7 @@ class Empty : public Block
         //inline void dbg_prt();
         Path* update(Path* ,Coordinate*);
         void dbg_info();
-        char dbg_char();
+        double dbg_char();
 };
 
 class Koz : public Block
@@ -60,7 +60,7 @@ class Koz : public Block
         //inline void dbg_prt_list();
         Path* update(Path* , Coordinate*);
         void dbg_info();
-        char dbg_char();
+        double dbg_char();
 };
 
 class Path : public Block
@@ -90,7 +90,7 @@ class Path : public Block
         //inline void dbg_prt_list();
         Path* update(Path*, Coordinate*);
         void dbg_info();
-        char dbg_char();
+        double dbg_char();
 };
 
 #endif

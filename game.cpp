@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include "game.h"
-#define _DBG_ 1
+#define _DBG_ 0
 #include "debug.h"
 
 
@@ -58,7 +58,7 @@ void Stack::remove(Block *tar)
     while (*ptr) {
         if ((*ptr)->edge == tar) {
             buf = *ptr;
-            buf->edge->dbg_info();
+            //buf->edge->dbg_info();
             *ptr = (*ptr)->next;
             delete buf;
             break;
@@ -81,7 +81,7 @@ void Stack::dbg_info()
     i = 0;
     while (ptr) {
         dbg("Node %d\n", i++);
-        ptr->edge->dbg_info();
+        //ptr->edge->dbg_info();
         ptr = ptr->next;
         dbg("\n");
     }
@@ -125,7 +125,7 @@ void Game::next_step()
         dbg("Stack is empty");
         return;
     }
-    dbg("Current edge:\n");
+    dbg("Current edge: %p\n", cur_edge);
     cur_edge->dbg_info();
 
     adjs = cur_edge->get_adjs();
@@ -138,6 +138,7 @@ void Game::next_step()
 
         if(next_edge == NULL)
             continue;
+        dbg("Next EDGE: %p\n", next_edge);
         //next_edge->dbg_info();
         result = next_edge->update(cur_edge, this->des); // return path if next is path or empty
         if (result) {
@@ -183,7 +184,7 @@ void Game::dbg_visual_2D(int z)
         dbg("%d\t", x);
         for (int y=0; y<Y_MAX; y++) {
             ptr = this->kiz->get_position(Coordinate(x, y, z));
-            dbg("%c\t", ptr->dbg_char());
+            dbg("%d\t", (int)ptr->dbg_char());
         }
         dbg("\n");
     }

@@ -15,10 +15,11 @@ void Route::dbg_info()
     i = 0;
 
     while(ptr) {
+        i++;
         ptr->coor.dbg_info();
         dbg("\n");
         ptr = ptr->next;
     }
-
+    dbg("Total %d steps\n", i);
     ptr = NULL;
 }

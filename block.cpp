@@ -1,4 +1,5 @@
 #include <cstdlib>
+#define _DBG_ 1
 #include "debug.h"
 #include "block.h"
 
@@ -107,11 +108,11 @@ Path *Koz::update(Path* prev, Coordinate* des)
 Path *Path::update(Path* prev, Coordinate* des)
 {
     Path *ret;
-
+    const double step_len = 0.5;
     ret = NULL;
-    if((this -> g) > (prev -> g + 1))
+    if((this -> g) > (prev -> g + step_len))
     {
-        ret = new Path(this->coor, prev, prev->g + 1, this->h);
+        ret = new Path(this->coor, prev, prev->g + step_len, this->h);
     }
 
     return ret;
@@ -144,7 +145,7 @@ void Koz::dbg_info()
 
 void Path::dbg_info()
 {
-    //dbg("== Path ==\n");
+    dbg("== Path ==\n");
     this->coor.dbg_info();
     dbg("%lf, %lf,  %lf\n",this->g, this->h, this->g + this->h);
     //dbg("Position:\n");
@@ -153,22 +154,22 @@ void Path::dbg_info()
     //dbg("============\n");
 }
 
-char Block::dbg_char()
+double Block::dbg_char()
 {
-    return '!';
+    return 0;
 }
 
-char Empty::dbg_char()
+double Empty::dbg_char()
 {
-    return '.';
+    return 0;
 }
 
-char Koz::dbg_char()
+double Koz::dbg_char()
 {
-    return 'X';
+    return -1;
 }
 
-char Path::dbg_char()
+double Path::dbg_char()
 {
-    return 'O';
+    return this->g + this->h;
 }
