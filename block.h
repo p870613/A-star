@@ -36,28 +36,28 @@ class Block
          */
         //virtual inline void dbg_prt_list();
         virtual Path* update(Path* , Coordinate*);
-
+        virtual void dbg_info();
 };
 
 class Empty : public Block
 {
-    private:
     public:
         Empty(const Coordinate);
         Result *is_reached();
         //inline void dbg_prt();
         Path* update(Path* ,Coordinate*);
+        void dbg_info();
 };
 
 class Koz : public Block
 {
-    private:
     public:
         Koz(const Coordinate);
         Result *is_reached();
         //inline void dbg_prt();
         //inline void dbg_prt_list();
         Path* update(Path* , Coordinate*);
+        void dbg_info();
 };
 
 class Path : public Block
@@ -86,6 +86,7 @@ class Path : public Block
         //inline void dbg_prt();
         //inline void dbg_prt_list();
         Path* update(Path*, Coordinate*);
+        void dbg_info();
 };
 
 #endif

@@ -7,7 +7,7 @@
 
 Field_3D::Field_3D()
 {
-    dbg("Gen field");
+    dbg("Gen field\n");
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
@@ -36,7 +36,11 @@ Block **Field_3D::offset(Coordinate pst)
 
 Block *Field_3D::get_position(Coordinate pst)
 {
-    return *(this->offset(pst));
+    Block **ptr;
+    ptr = this->offset(pst);
+    if (ptr)
+        return *(ptr);
+    return NULL;
 }
 
 bool Field_3D::set_position(Block *blk, Coordinate pst)
@@ -48,13 +52,11 @@ bool Field_3D::set_position(Block *blk, Coordinate pst)
         *(ptr) = blk;
         return true;
     }
-    return true;
+    return false;
 }
 
 void Field_3D::update(Block *blk)
 {
     const Coordinate pos = blk->get_coor();
     this -> set_position(blk, pos);
-    delete blk;
-    blk = NULL;
 }

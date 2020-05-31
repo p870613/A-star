@@ -15,6 +15,7 @@ using std::endl;
 #include "gen_env.h"
 #include "block.h"
 #include "config.h"
+#define _DBG_ 0
 #include "debug.h"
 
 
@@ -41,11 +42,11 @@ static double max[9][3] = {{10.95, -4.7, 5.0},
                      {11.25, -8.7, 4.4},
                      {10.65, -8.9, 4.8}};
 
+static int data[X_MAX][Y_MAX][Z_MAX];
 Block **gen_env()
 {
-    int data[X_MAX][Y_MAX][Z_MAX];
 
-    dbg("Gen env");
+    dbg("Gen env\n");
     for(int i = 0; i < 9; i++)
     {
         min_index[i][0] = int((min[i][0] - 9.95) * 100);
@@ -57,7 +58,7 @@ Block **gen_env()
     }
 
    /*data init*/
-    dbg("Gen date");
+    dbg("Gen date\n");
     for(int i = 0; i < X_MAX; i++)
         for(int j = 0; j < Y_MAX; j ++)
             for(int k = 0; k < Z_MAX; k++)
@@ -72,7 +73,7 @@ Block **gen_env()
     }
 
     /*kiz init*/
-    dbg("Insert nodes");
+    dbg("Init nodes\n");
     int offset = 0;
     Block **kiz = new Block *[X_MAX * Y_MAX * Z_MAX];
     for(int i = 0; i < X_MAX; i++)

@@ -1,8 +1,6 @@
-#include "coor.h"
 #include <cmath>
-#include <iostream>
-using std::cout;
-using std::endl;
+#include "coor.h"
+#include "debug.h"
 
 Coordinate::Coordinate()
 {
@@ -54,6 +52,8 @@ Coordinate *Coordinate::get_adjs()
 
     for (int i=0; i<ADJ_SZ; i++) {
         ret[i] = Coordinate(this->x + x_off[i], this->y + y_off[i], this->z + z_off[i]);
+        dbg("====\n");
+        ret[i].dbg_info();
     }
     return ret;
 }
@@ -68,11 +68,9 @@ dist_t Coordinate::euc_dis(Coordinate des)
     return int(sqrt(cost_x * cost_x + cost_y * cost_y + cost_z * cost_z));
 }
 
-void Coordinate::dbg_prt()
+void Coordinate::dbg_info()
 {
-    cout << "========" << endl;
-    cout << "x: " << this->x << endl;
-    cout << "y: " << this->y << endl;
-    cout << "z: " << this->z << endl;
-    cout << "========" << endl;
+    dbg("x: %d\n", this->x);
+    dbg("y: %d\n", this->y);
+    dbg("z: %d\n", this->z);
 }

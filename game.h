@@ -20,7 +20,9 @@ class Stack
         Stack();
         void insert(Path *);
         Path *pop();
+        void remove(Block *);
         bool is_empty();
+        void dbg_info();
 };
 
 class Game
@@ -30,11 +32,13 @@ class Game
         Stack edges;
         struct Coordinate *src;
         struct Coordinate *des;
+        void dbg_info();
 
     public:
         Game(Field_3D *, Coordinate *, Coordinate *); // kiz src des
         Result *set();
         void next_step();
+        void dbg_stk_info();
 };
 
 #endif
