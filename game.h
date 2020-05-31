@@ -20,6 +20,7 @@ class Stack
         Stack();
         void insert(Path *);
         Path *pop();
+        void remove(Block *);
         bool is_empty();
         void dbg_info();
 };

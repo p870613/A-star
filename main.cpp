@@ -19,7 +19,7 @@ int main(void)
     kiz = new Field_3D();
 
     dbg("SRC\n");
-    src = new Coordinate(3, 3, 1);
+    src = new Coordinate(2, 2, 1);
 
     dbg("DES\n");
     des = new Coordinate(1, 1, 1);
@@ -36,7 +36,7 @@ int main(void)
         dbg("\nCkeckout Stack\n");
         game->dbg_stk_info();
         dbg("+++++++++++++\n");
-        //getchar();
+        getchar();
     }
     dbg("Finish\n");
 

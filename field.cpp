@@ -52,7 +52,7 @@ bool Field_3D::set_position(Block *blk, Coordinate pst)
         *(ptr) = blk;
         return true;
     }
-    return true;
+    return false;
 }
 
 void Field_3D::update(Block *blk)

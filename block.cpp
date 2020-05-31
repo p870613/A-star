@@ -104,12 +104,11 @@ Path *Koz::update(Path* prev, Coordinate* des)
     return NULL;
 }
 
-//compare two path and then return cost less
 Path *Path::update(Path* prev, Coordinate* des)
 {
     Path *ret;
 
-    ret = this;
+    ret = NULL;
     if((this -> g) > (prev -> g + 1))
     {
         ret = new Path(this->coor, prev, prev->g + 1, this->h);

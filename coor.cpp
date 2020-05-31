@@ -52,6 +52,8 @@ Coordinate *Coordinate::get_adjs()
 
     for (int i=0; i<ADJ_SZ; i++) {
         ret[i] = Coordinate(this->x + x_off[i], this->y + y_off[i], this->z + z_off[i]);
+        dbg("====\n");
+        ret[i].dbg_info();
     }
     return ret;
 }
