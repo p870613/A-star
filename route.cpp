@@ -1,15 +1,12 @@
 #include "route.h"
 #include "debug.h"
-#include <iostream>
-using std::cout;
-using std::endl;
 
 Route::Route(struct Route_Node *src)
 {
     this->src = src;
 }
 
-void Route::dbg_prt()
+void Route::dbg_info()
 {
     struct Route_Node *ptr;
     int i;
@@ -18,9 +15,9 @@ void Route::dbg_prt()
     i = 0;
 
     while(ptr) {
-        cout << "Node: " << i << endl;
-        ptr->coor.dbg_prt();
-        cout << endl << endl;
+        dbg("Node: %d", i);
+        ptr->coor.dbg_info();
+        ptr = ptr->next;
     }
 
     ptr = NULL;

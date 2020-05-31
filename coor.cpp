@@ -66,7 +66,7 @@ dist_t Coordinate::euc_dis(Coordinate des)
     return int(sqrt(cost_x * cost_x + cost_y * cost_y + cost_z * cost_z));
 }
 
-void Coordinate::dbg_prt()
+void Coordinate::dbg_info()
 {
     dbg("x: %d\n", this->x);
     dbg("y: %d\n", this->y);

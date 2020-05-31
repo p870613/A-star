@@ -21,6 +21,7 @@ class Stack
         void insert(Path *);
         Path *pop();
         bool is_empty();
+        void dbg_info();
 };
 
 class Game
@@ -36,6 +37,7 @@ class Game
         Game(Field_3D *, Coordinate *, Coordinate *); // kiz src des
         Result *set();
         void next_step();
+        void dbg_stk_info();
 };
 
 #endif

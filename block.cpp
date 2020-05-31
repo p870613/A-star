@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include "debug.h"
 #include "block.h"
 
 Block::Block(const Coordinate posi)
@@ -20,6 +21,14 @@ Path::Path(const Coordinate posi, Path *prev, dist_t g, dist_t h) : Block(posi)
     this->prev = prev;
     this->g = g;
     this->h = h;
+}
+
+bool Path::operator>(Path cmper)
+{
+    if (this->g + this->h > cmper.g + cmper.h) {
+        return true;
+    }
+    return false;
 }
 
 dist_t Path::get_g()
@@ -100,10 +109,46 @@ Path *Path::update(Path* prev, Coordinate* des)
 {
     Path *ret;
 
+    ret = this;
     if((this -> g) > (prev -> g + 1))
     {
-        ret = new Path(this->coor, prev, this->g + 1, this->h);
+        ret = new Path(this->coor, prev, prev->g + 1, this->h);
     }
 
     return ret;
+}
+
+void Block::dbg_info()
+{
+    dbg("== Block ==\n");
+    dbg("Position:\n");
+    this->coor.dbg_info();
+    dbg("============\n");
+}
+
+void Empty::dbg_info()
+{
+    dbg("== Empty ==\n");
+    dbg("Position:\n");
+    this->coor.dbg_info();
+    dbg("============\n");
+}
+
+void Koz::dbg_info()
+{
+    dbg("== Koz ==\n");
+    dbg("Position:\n");
+    this->coor.dbg_info();
+    dbg("============\n");
+}
+
+
+void Path::dbg_info()
+{
+    dbg("== Path ==\n");
+    dbg("Position:\n");
+    this->coor.dbg_info();
+    dbg("G: %lf\n", this->g);
+    dbg("H: %lf\n", this->h);
+    dbg("============\n");
 }

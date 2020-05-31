@@ -36,7 +36,11 @@ Block **Field_3D::offset(Coordinate pst)
 
 Block *Field_3D::get_position(Coordinate pst)
 {
-    return *(this->offset(pst));
+    Block **ptr;
+    ptr = this->offset(pst);
+    if (ptr)
+        return *(ptr);
+    return NULL;
 }
 
 bool Field_3D::set_position(Block *blk, Coordinate pst)
@@ -55,6 +59,4 @@ void Field_3D::update(Block *blk)
 {
     const Coordinate pos = blk->get_coor();
     this -> set_position(blk, pos);
-    delete blk;
-    blk = NULL;
 }

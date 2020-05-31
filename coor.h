@@ -16,7 +16,7 @@ class Coordinate
         int offset(int, int);
         Coordinate *get_adjs();
         dist_t euc_dis(Coordinate);
-        void dbg_prt();
+        void dbg_info();
 };
 
 #endif

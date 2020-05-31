@@ -23,7 +23,7 @@ void Stack::insert(Path *edge)
     int i=0;
 
     ptr= &(this->top);
-    while (*ptr && *edge < *((*ptr)->edge)) {
+    while (*ptr && *edge > *((*ptr)->edge)) {
         ptr = &((*ptr)->next);
         i++;
     }
@@ -46,6 +46,26 @@ Path *Stack::pop()
     }
 
     return ret;
+}
+
+bool Stack::is_empty()
+{
+    return this->top == NULL;
+}
+
+void Stack::dbg_info()
+{
+    struct Stk_Node *ptr;
+    int i;
+
+    ptr = this->top;
+    i = 0;
+    while (ptr) {
+        dbg("Node %d\n", i++);
+        ptr->edge->dbg_info();
+        ptr = ptr->next;
+        dbg("\n");
+    }
 }
 
 Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
@@ -77,6 +97,7 @@ Result *Game::set()
 void Game::next_step()
 {
     this->dbg_info();
+
     Path *cur_edge;
     dist_t cur_g;
     Coordinate *adjs;
@@ -86,20 +107,30 @@ void Game::next_step()
         dbg("Stack is empty");
         return;
     }
+    dbg("Current edge:\n");
+    cur_edge->dbg_info();
 
     cur_g = cur_edge->get_g();
     adjs = cur_edge->get_adjs();
 
     for (int i=0; i<ADJ_SZ; i++) {
+        dbg("\nADJ: %d\n", i);
         Block *next_edge;
         Path *result;
         next_edge = this->kiz->get_position(adjs[i]);//block
 
         if(next_edge == NULL)
             continue;
-
+        next_edge->dbg_info();
         result = next_edge->update(cur_edge, this->des); // return path if next is path or empty
         if (result) {
+            if (result != next_edge) { // The node translate from Empty to Path
+                delete next_edge;
+                next_edge = NULL;
+            }
+
+            dbg("Update: %p\n", result);
+            result->dbg_info();
             this->kiz->update(result);
             this->edges.insert(result);
         }
@@ -111,8 +142,13 @@ void Game::dbg_info()
 {
     dbg("-- Game --\n");
     dbg("Source: \n");
-    this->src->dbg_prt();
+    this->src->dbg_info();
     dbg("Destination: \n");
-    this->des->dbg_prt();
+    this->des->dbg_info();
     dbg("----------\n");
+}
+
+void Game::dbg_stk_info()
+{
+    this->edges.dbg_info();
 }

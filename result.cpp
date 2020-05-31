@@ -25,6 +25,6 @@ Route *Koz_fail::get()
 Route *Reached::get()
 {
     dbg("Got a path");
-    this->route->dbg_prt();
+    this->route->dbg_info();
     return this->route;
 }
