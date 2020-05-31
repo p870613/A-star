@@ -15,16 +15,16 @@ int main(void)
     Coordinate *des;
     int i;
 
-    dbg("KIZ\n");
+    //dbg("KIZ\n");
     kiz = new Field_3D();
 
-    dbg("SRC\n");
-    src = new Coordinate(2, 2, 1);
+    //dbg("SRC\n");
+    src = new Coordinate(7, 7, 1);
 
-    dbg("DES\n");
-    des = new Coordinate(1, 1, 1);
+    //dbg("DES\n");
+    des = new Coordinate(0, 0, 1);
 
-    dbg("Game\n");
+    //dbg("Game\n");
     game = new Game (kiz, src, des);
 
     // do A*
@@ -34,11 +34,14 @@ int main(void)
         dbg("+++++++++++++ Step %d\n", i++);
         game->next_step();
         dbg("\nCkeckout Stack\n");
-        game->dbg_stk_info();
-        dbg("+++++++++++++\n");
-        getchar();
+        //game->dbg_stk_info();
+        //dbg("+++++++++++++\n");
+        game->dbg_visual_2D(1);
+        //getchar();
     }
     dbg("Finish\n");
+
+    dbg("Total %d steps\n", i);
 
     return ret->get() == NULL;
 }

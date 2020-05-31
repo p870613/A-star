@@ -3,6 +3,7 @@
 #define _DBG_ 1
 #include "debug.h"
 
+
 static struct Stk_Node *new_sn(Path *edge, struct Stk_Node *next)
 {
     struct Stk_Node *ret;
@@ -55,8 +56,9 @@ void Stack::remove(Block *tar)
 
     ptr = &(this->top);
     while (*ptr) {
-        if ((*ptr)->edge != tar) {
+        if ((*ptr)->edge == tar) {
             buf = *ptr;
+            buf->edge->dbg_info();
             *ptr = (*ptr)->next;
             delete buf;
             break;
@@ -82,7 +84,6 @@ void Stack::dbg_info()
         ptr->edge->dbg_info();
         ptr = ptr->next;
         dbg("\n");
-        break;
     }
 }
 
@@ -156,15 +157,34 @@ void Game::next_step()
 
 void Game::dbg_info()
 {
+    /*
     dbg("-- Game --\n");
     dbg("Source: \n");
     this->src->dbg_info();
     dbg("Destination: \n");
     this->des->dbg_info();
     dbg("----------\n");
+    */
 }
 
 void Game::dbg_stk_info()
 {
     this->edges.dbg_info();
+}
+
+void Game::dbg_visual_2D(int z)
+{
+    Block *ptr;
+    dbg(" \t");
+    for (int y=0; y<Y_MAX; y++)
+        dbg("%d\t", y);
+    dbg("\n");
+    for (int x=0; x<X_MAX; x++) {
+        dbg("%d\t", x);
+        for (int y=0; y<Y_MAX; y++) {
+            ptr = this->kiz->get_position(Coordinate(x, y, z));
+            dbg("%c\t", ptr->dbg_char());
+        }
+        dbg("\n");
+    }
 }

@@ -1,5 +1,6 @@
 #include <cmath>
 #include "coor.h"
+#define _DBG_ 1
 #include "debug.h"
 
 Coordinate::Coordinate()
@@ -52,8 +53,8 @@ Coordinate *Coordinate::get_adjs()
 
     for (int i=0; i<ADJ_SZ; i++) {
         ret[i] = Coordinate(this->x + x_off[i], this->y + y_off[i], this->z + z_off[i]);
-        dbg("====\n");
-        ret[i].dbg_info();
+        //dbg("====\n");
+        //ret[i].dbg_info();
     }
     return ret;
 }
@@ -70,7 +71,7 @@ dist_t Coordinate::euc_dis(Coordinate des)
 
 void Coordinate::dbg_info()
 {
-    dbg("x: %d\n", this->x);
-    dbg("y: %d\n", this->y);
-    dbg("z: %d\n", this->z);
+    dbg("x: %d, ", this->x);
+    dbg("y: %d, ", this->y);
+    dbg("z: %d, ", this->z);
 }

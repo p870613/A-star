@@ -39,6 +39,7 @@ class Game
         Result *set();
         void next_step();
         void dbg_stk_info();
+        void dbg_visual_2D(int);
 };
 
 #endif
