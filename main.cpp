@@ -1,38 +1,38 @@
 #include <cstdlib>
-#include <iostream>
 #include "game.h"
 #include "debug.h"
-using std::cout;
-using std::endl;
 
 int main(void)
 {
+    dbg("Debug mode\n");
     Game *game;
     Result *ret;
 
     Field_3D *kiz;
     Coordinate *src;
     Coordinate *des;
+    int i;
 
-    dbg("debug mode\n");
-    cout << "KIZ" << endl;
+    dbg("KIZ\n");
     kiz = new Field_3D();
 
-    cout << "src" << endl;
+    dbg("SRC\n");
     src = new Coordinate(1, 2, 1);
 
-    cout << "des" << endl;
+    dbg("DES\n");
     des = new Coordinate(1, 1, 1);
 
-    cout << "Game" << endl;
+    dbg("Game\n");
     game = new Game (kiz, src, des);
 
     // do A*
-    cout << "A*" << endl;
+    dbg("A star\n");
+    i = 0;
     while (!(ret = game->set())) {
+        dbg("Step %d\n", i++);
         game->next_step();
     }
-    cout << "Finished" << endl;
+    dbg("Finish\n");
 
     return ret->get() != NULL;
 }

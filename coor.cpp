@@ -1,8 +1,6 @@
-#include "coor.h"
 #include <cmath>
-#include <iostream>
-using std::cout;
-using std::endl;
+#include "coor.h"
+#include "debug.h"
 
 Coordinate::Coordinate()
 {
@@ -70,9 +68,7 @@ dist_t Coordinate::euc_dis(Coordinate des)
 
 void Coordinate::dbg_prt()
 {
-    cout << "========" << endl;
-    cout << "x: " << this->x << endl;
-    cout << "y: " << this->y << endl;
-    cout << "z: " << this->z << endl;
-    cout << "========" << endl;
+    dbg("x: %d\n", this->x);
+    dbg("y: %d\n", this->y);
+    dbg("z: %d\n", this->z);
 }

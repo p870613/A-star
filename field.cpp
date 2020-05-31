@@ -7,7 +7,7 @@
 
 Field_3D::Field_3D()
 {
-    dbg("Gen field");
+    dbg("Gen field\n");
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
