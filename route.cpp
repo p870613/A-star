@@ -15,8 +15,8 @@ void Route::dbg_info()
     i = 0;
 
     while(ptr) {
-        dbg("Node: %d\n", i++);
         ptr->coor.dbg_info();
+        dbg("\n");
         ptr = ptr->next;
     }
 

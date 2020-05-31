@@ -144,10 +144,31 @@ void Koz::dbg_info()
 
 void Path::dbg_info()
 {
-    dbg("== Path ==\n");
-    dbg("Position:\n");
+    //dbg("== Path ==\n");
     this->coor.dbg_info();
-    dbg("G: %lf\n", this->g);
-    dbg("H: %lf\n", this->h);
-    dbg("============\n");
+    dbg("%lf, %lf,  %lf\n",this->g, this->h, this->g + this->h);
+    //dbg("Position:\n");
+    //dbg("G: %lf\n", this->g);
+    //dbg("H: %lf\n", this->h);
+    //dbg("============\n");
+}
+
+char Block::dbg_char()
+{
+    return '!';
+}
+
+char Empty::dbg_char()
+{
+    return '.';
+}
+
+char Koz::dbg_char()
+{
+    return 'X';
+}
+
+char Path::dbg_char()
+{
+    return 'O';
 }
