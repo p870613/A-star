@@ -19,10 +19,10 @@ int main(void)
     kiz = new Field_3D();
 
     //dbg("SRC\n");
-    src = new Coordinate(7, 7, 1);
+    src = new Coordinate(100, 75, 95);
 
     //dbg("DES\n");
-    des = new Coordinate(0, 0, 1);
+    des = new Coordinate(155, 270, 60);
 
     //dbg("Game\n");
     game = new Game (kiz, src, des);
@@ -31,12 +31,12 @@ int main(void)
     dbg("A star\n");
     i = 0;
     while (!(ret = game->set())) {
-        dbg("+++++++++++++ Step %d\n", i++);
+        dbg("Step %d\n", i++);
         game->next_step();
-        dbg("\nCkeckout Stack\n");
+        //dbg("\nCkeckout Stack\n");
         //game->dbg_stk_info();
         //dbg("+++++++++++++\n");
-        game->dbg_visual_2D(1);
+        //game->dbg_visual_2D(1);
         //getchar();
     }
     dbg("Finish\n");

@@ -66,7 +66,7 @@ dist_t Coordinate::euc_dis(Coordinate des)
     dist_t cost_x = (this -> x) - (des.x);
     dist_t cost_y = (this -> y) - (des.y);
     dist_t cost_z = (this -> z) - (des.z);
-    return int(sqrt(cost_x * cost_x + cost_y * cost_y + cost_z * cost_z));
+    return dist_t(sqrt(cost_x * cost_x + cost_y * cost_y + cost_z * cost_z));
 }
 
 void Coordinate::dbg_info()

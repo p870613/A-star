@@ -47,7 +47,6 @@ Block **gen_env()
 {
 
     dbg("Gen env\n");
-    /*
     for(int i = 0; i < 9; i++)
     {
         min_index[i][0] = int((min[i][0] - 9.95) * 100);
@@ -56,7 +55,7 @@ Block **gen_env()
         max_index[i][0] = int((max[i][0] - 9.95) * 100);
         max_index[i][1] = int(- ((max[i][1] + 3) * 100));
         max_index[i][2] = int((max[i][2] - 3.9) * 100);
-    }*/
+    }
 
    /*data init*/
     dbg("Gen date\n");
@@ -75,12 +74,14 @@ Block **gen_env()
     */
 
     // manual set
+    /*
     for (int i=0; i<4; i++)
         data[3][i][1] = 1;
     data[1][3][1] = 1;
     data[2][3][1] = 1;
     data[0][1][1] = 1;
     data[1][1][1] = 1;
+    */
 
     /*kiz init*/
     dbg("Init nodes\n");
