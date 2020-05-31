@@ -1,12 +1,14 @@
 .PHONY=all, clean
-dO=main.o block.o field.o game.o
+
+CPP_FILES=$(wildcard *.cpp)
+OBJ_FILES=$(CPP_FILES:%.cpp=%.o)
 
 all: main
 
-main: $(dO)
-	g++ -o main $(dO)
+main: $(OBJ_FILES)
+	g++ -o main $(OBJ_FILES)
 
-%.o: %.cpp
+%.o: %.cpp %.h debug.h
 	g++ -c $<
 
 clean:

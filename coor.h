@@ -10,14 +10,13 @@ class Coordinate
         int y;
         int z;
     public:
+        Coordinate();
         Coordinate(int, int, int);
-        Coordinate(){};
-        Coordinate *get_adjs();
         bool operator>(Coordinate);
         int offset(int, int);
+        Coordinate *get_adjs();
         dist_t euc_dis(Coordinate);
+        void dbg_prt();
 };
-// TODO overide equal
-
 
 #endif

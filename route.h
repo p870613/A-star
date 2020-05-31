@@ -15,7 +15,7 @@ class Route
         struct Route_Node *src;
     public:
         Route(struct Route_Node *);
-        inline void dbg_prt();
+        void dbg_prt();
 };
 
 #endif

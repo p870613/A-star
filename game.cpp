@@ -48,7 +48,7 @@ Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
 {
     Path *src_p;
 
-    src_p = new Path(*src);
+    src_p = new Path(*src, NULL, 0, src->euc_dis(*des));
     this->kiz = kiz;
     this->src = src;
     this->des = des;
