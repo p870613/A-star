@@ -1,37 +1,25 @@
 #include <cstdlib>
 #include "block.h"
 
-Coordinate Block::get_coor()
-{
-    return this -> coor;
-}
-
 Block::Block(const Coordinate posi)
 {
     this->coor = posi;
 }
 
-Empty::Empty(Coordinate posi) : Block(posi){}
+Coordinate Block::get_coor()
+{
+    return this -> coor;
+}
 
-Koz::Koz(Coordinate posi) : Block(posi){}
+Empty::Empty(const Coordinate posi) : Block(posi){}
+
+Koz::Koz(const Coordinate posi) : Block(posi){}
 
 Path::Path(const Coordinate posi, Path *prev, dist_t g, dist_t h) : Block(posi)
 {
     this->prev = prev;
     this->g = g;
     this->h = h;
-}
-
-struct Route_Node *Path::trace_back(struct Route_Node *prev)
-{
-    struct Route_Node *cur;
-    cur = new struct Route_Node;
-    cur->coor = this->coor;
-    cur->next = prev;
-    if (this->prev) {
-        return this->prev->trace_back(cur);
-    }
-    return cur;
 }
 
 dist_t Path::get_g()
@@ -42,11 +30,15 @@ dist_t Path::get_g()
 Coordinate *Path::get_adjs()
 {
     Coordinate *ret;
-    Coordinate cur;
 
-    ret = new Coordinate[ADJ_SZ];
+    ret = this->coor.get_adjs();
 
     return ret;
+}
+
+Result *Block::is_reached()
+{
+    return NULL;
 }
 
 Result *Empty::is_reached()
@@ -71,7 +63,24 @@ Result *Path::is_reached()
     return ret;
 }
 
-Path* Empty::update(Path* prev, Coordinate* des)
+struct Route_Node *Path::trace_back(struct Route_Node *prev)
+{
+    struct Route_Node *cur;
+    cur = new struct Route_Node;
+    cur->coor = this->coor;
+    cur->next = prev;
+    if (this->prev) {
+        return this->prev->trace_back(cur);
+    }
+    return cur;
+}
+
+Path *Block::update(Path* prev, Coordinate* des)
+{
+    return NULL;
+}
+
+Path *Empty::update(Path* prev, Coordinate* des)
 {
     const int g = prev -> get_g() + 1;
     const int h = des -> euc_dis(this -> get_coor());
@@ -81,13 +90,13 @@ Path* Empty::update(Path* prev, Coordinate* des)
     return new_path;
 }
 
-Path* Koz::update(Path* prev, Coordinate* des)
+Path *Koz::update(Path* prev, Coordinate* des)
 {
     return NULL;
 }
 
 //compare two path and then return cost less
-Path* Path::update(Path* prev, Coordinate* des)
+Path *Path::update(Path* prev, Coordinate* des)
 {
     Path *ret;
 

@@ -4,9 +4,12 @@
 #include "result.h"
 #include "coor.h"
 #include "config.h"
+
+class Block;
 class Path;
 class Empty;
 class Koz;
+
 class Block
 {
     protected:
@@ -22,7 +25,7 @@ class Block
          * Koz: return Fail
          * path: return Reached, and will have a Route as contant
          */
-        virtual inline void dbg_prt();
+        //virtual inline void dbg_prt();
         /*
          * TODO:
          * will be implement like #if DEBUG 1
@@ -31,7 +34,7 @@ class Block
          * ...
          * #endif
          */
-        virtual inline void dbg_prt_list();
+        //virtual inline void dbg_prt_list();
         virtual Path* update(Path* , Coordinate*);
 
 };
@@ -42,7 +45,7 @@ class Empty : public Block
     public:
         Empty(const Coordinate);
         Result *is_reached();
-        inline void dbg_prt();
+        //inline void dbg_prt();
         Path* update(Path* ,Coordinate*);
 };
 
@@ -52,8 +55,8 @@ class Koz : public Block
     public:
         Koz(const Coordinate);
         Result *is_reached();
-        inline void dbg_prt();
-        inline void dbg_prt_list();
+        //inline void dbg_prt();
+        //inline void dbg_prt_list();
         Path* update(Path* , Coordinate*);
 };
 
@@ -80,8 +83,8 @@ class Path : public Block
         dist_t get_g();
         Coordinate *get_adjs();
         Result *is_reached();
-        inline void dbg_prt();
-        inline void dbg_prt_list();
+        //inline void dbg_prt();
+        //inline void dbg_prt_list();
         Path* update(Path*, Coordinate*);
 };
 

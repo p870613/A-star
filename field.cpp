@@ -4,8 +4,10 @@
 #include "config.h"
 #include "gen_env.h"
 #include "block.h"
+
 Field_3D::Field_3D()
 {
+    dbg("Gen field");
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;

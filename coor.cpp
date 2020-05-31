@@ -1,5 +1,16 @@
 #include "coor.h"
 #include <cmath>
+#include <iostream>
+using std::cout;
+using std::endl;
+
+Coordinate::Coordinate()
+{
+    this->x = -1;
+    this->y = -1;
+    this->z = -1;
+}
+
 Coordinate::Coordinate(int x, int y, int z)
 {
     this->x = x;
@@ -24,6 +35,29 @@ int Coordinate::offset(int y_sz, int z_sz)
     + this->z;
 }
 
+Coordinate *Coordinate::get_adjs()
+{
+    Coordinate *ret;
+    int x_off[ADJ_SZ] = {1, -1,
+                         0,  0,
+                         0,  0};
+
+    int y_off[ADJ_SZ] = {0,  0,
+                         1, -1,
+                         0,  0};
+
+    int z_off[ADJ_SZ] = {0,  0,
+                         0,  0,
+                         1, -1};
+
+    ret = new Coordinate[ADJ_SZ];
+
+    for (int i=0; i<ADJ_SZ; i++) {
+        ret[i] = Coordinate(this->x + x_off[i], this->y + y_off[i], this->z + z_off[i]);
+    }
+    return ret;
+}
+
 // calulate coordinate to coordinate distance
 // issue int ?? float??
 dist_t Coordinate::euc_dis(Coordinate des)
@@ -32,4 +66,13 @@ dist_t Coordinate::euc_dis(Coordinate des)
     dist_t cost_y = (this -> y) - (des.y);
     dist_t cost_z = (this -> z) - (des.z);
     return int(sqrt(cost_x * cost_x + cost_y * cost_y + cost_z * cost_z));
+}
+
+void Coordinate::dbg_prt()
+{
+    cout << "========" << endl;
+    cout << "x: " << this->x << endl;
+    cout << "y: " << this->y << endl;
+    cout << "z: " << this->z << endl;
+    cout << "========" << endl;
 }
