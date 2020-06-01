@@ -12,4 +12,5 @@
 */
 
 typedef double dist_t;
+
 #endif

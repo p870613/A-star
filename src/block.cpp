@@ -68,7 +68,7 @@ Result *Path::is_reached()
     Route *route;
     Result *ret;
 
-    route = new Route (this->trace_back(NULL));
+    route = new Route (this->trace_back(NULL)); // Build a linked list from src to des
     ret = new Reached(route);
     return ret;
 }
@@ -76,12 +76,14 @@ Result *Path::is_reached()
 struct Route_Node *Path::trace_back(struct Route_Node *prev)
 {
     struct Route_Node *cur;
+
     cur = new struct Route_Node;
     cur->coor = this->coor;
     cur->next = prev;
     if (this->prev) {
         return this->prev->trace_back(cur);
     }
+
     return cur;
 }
 
@@ -108,7 +110,8 @@ Path *Koz::update(Path* prev, Coordinate* des)
 Path *Path::update(Path* prev, Coordinate* des)
 {
     Path *ret;
-    const double step_len = 0.5;
+
+    const double step_len = this->coor.euc_dis(*des);
     ret = NULL;
     if((this -> g) > (prev -> g + step_len))
     {
@@ -148,10 +151,6 @@ void Path::dbg_info()
     dbg("== Path ==\n");
     this->coor.dbg_info();
     dbg("%lf, %lf,  %lf\n",this->g, this->h, this->g + this->h);
-    //dbg("Position:\n");
-    //dbg("G: %lf\n", this->g);
-    //dbg("H: %lf\n", this->h);
-    //dbg("============\n");
 }
 
 double Block::dbg_char()

@@ -1,8 +1,9 @@
 #ifndef _FUND_H_
 #define _FUND_H_
 
-#define ADJ_SZ 6
 #include "config.h"
+#define ADJ_SZ 26
+
 class Coordinate
 {
     private:
