@@ -1,5 +1,5 @@
 #include <cstdlib>
-#define _DBG_ 1
+#define _DBG_ 0
 #include "debug.h"
 #include "block.h"
 
@@ -111,8 +111,8 @@ Path *Path::update(Path* prev, Coordinate* des)
 {
     Path *ret;
 
-    const double step_len = this->coor.euc_dis(*des);
-    dbg("%lf\n", step_len);
+    const double step_len = this->coor.euc_dis(prev->coor);
+    dbg("Len: %lf\n", step_len);
     ret = NULL;
     if((this -> g) > (prev -> g + step_len))
     {

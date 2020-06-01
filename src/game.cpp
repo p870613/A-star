@@ -120,7 +120,6 @@ void Game::next_step()
     }
 
     dbg("Current edge: %p\n", cur_edge);
-    cur_edge->dbg_info();
     adjs = cur_edge->get_adjs();
     for (int i=0; i<ADJ_SZ; i++) {
         Block *next_edge;
