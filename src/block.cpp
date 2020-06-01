@@ -112,6 +112,7 @@ Path *Path::update(Path* prev, Coordinate* des)
     Path *ret;
 
     const double step_len = this->coor.euc_dis(*des);
+    dbg("%lf\n", step_len);
     ret = NULL;
     if((this -> g) > (prev -> g + step_len))
     {

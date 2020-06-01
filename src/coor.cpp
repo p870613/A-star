@@ -37,18 +37,14 @@ int Coordinate::offset(int y_sz, int z_sz)
 Coordinate *Coordinate::get_adjs()
 {
     Coordinate *ret;
-    int x_off[ADJ_SZ] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-
-    int y_off[ADJ_SZ] = {0, 0, 1, 1, 0, -1, -1, -1, 1, 0, 1, 1, 0, -1, -1, -1, 1, 0, 0, 1, 1, 0, -1, -1, -1, 1};
-
-    int z_off[ADJ_SZ] = {0, 1, 0, 1, -1, 0, -1, 1, -1, 1, 0, 1, -1, 0, -1, 1, -1, 0, 1, 0, 1, -1, 0, -1, 1, -1};
+    int x_off[ADJ_SZ] = {1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    int y_off[ADJ_SZ] = {0,  0,  1,  1,  0, -1, -1, -1,  1,  0,  1,  1,  0, -1, -1, -1,  1,  0,  0,  1,  1,  0, -1, -1, -1,  1};
+    int z_off[ADJ_SZ] = {0,  1,  0,  1, -1,  0, -1,  1, -1,  1,  0,  1, -1,  0, -1,  1, -1,  0,  1,  0,  1, -1,  0, -1,  1, -1};
 
     ret = new Coordinate[ADJ_SZ];
 
     for (int i=0; i<ADJ_SZ; i++) {
         ret[i] = Coordinate(this->x + x_off[i], this->y + y_off[i], this->z + z_off[i]);
-        //dbg("====\n");
-        //ret[i].dbg_info();
     }
     return ret;
 }

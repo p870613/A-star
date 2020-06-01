@@ -31,6 +31,7 @@ int main(void)
 #if _DBG_
         game->dbg_visual_2D(1);
 #endif
+        getchar();
     }
     dbg("\nTotal %d turns\n", i);
 
