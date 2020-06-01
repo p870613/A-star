@@ -29,9 +29,9 @@ int main(void)
         dbg("Turn %d\n", i++);
         game->next_step(); // Pop next edge and try adjacent blocks
 #if _DBG_
-        game->dbg_visual_2D(1);
+        //game->dbg_visual_2D(1);
 #endif
-        getchar();
+        //getchar();
     }
     dbg("\nTotal %d turns\n", i);
 
