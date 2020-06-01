@@ -17,6 +17,8 @@ class Coordinate
         Coordinate *get_adjs();
         dist_t euc_dis(Coordinate);
         void dbg_info();
+        void mapping(double, double, double);
+        bool is_range_in(Coordinate*, Coordinate * );
 };
 
 #endif

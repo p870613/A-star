@@ -5,13 +5,13 @@
 #include "gen_env.h"
 #include "block.h"
 
-Field_3D::Field_3D()
+Field_3D::Field_3D(Coordinate *min, Coordinate *max)
 {
     dbg("Gen field\n");
     this->x_sz = X_MAX;
     this->y_sz = Y_MAX;
     this->z_sz = Z_MAX;
-    this->zone = gen_env();
+    this->zone = gen_env(min, max);
 }
 
 bool Field_3D::accessable(Coordinate pst)

@@ -5,6 +5,7 @@
 #define Y_MAX 700
 #define Z_MAX 200
 
+#define KOZ_NUM 9
 /*
 #define X_MAX 10
 #define Y_MAX 10

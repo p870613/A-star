@@ -59,8 +59,6 @@ Coordinate *Coordinate::get_adjs()
     return ret;
 }
 
-// calulate coordinate to coordinate distance
-// issue int ?? float??
 dist_t Coordinate::euc_dis(Coordinate des)
 {
     dist_t cost_x = (this -> x) - (des.x);
@@ -74,4 +72,22 @@ void Coordinate::dbg_info()
     dbg("x: %d, ", this->x);
     dbg("y: %d, ", this->y);
     dbg("z: %d, ", this->z);
+}
+
+void Coordinate::mapping(double const x, double const y, double const z)
+{
+    this -> x = int((x - 9.95) * 100);
+    this -> y = int(- (y + 3) * 100);
+    this -> z = int((z - 3.9) * 100);
+}
+
+bool Coordinate::is_range_in(Coordinate* min, Coordinate * max)
+{
+    for(int i = 0; i < KOZ_NUM; i++)
+    {
+         if((this->x >= min[i].x && this->x <= max[i].x) && (this->y >= min[i].y && this->y <= max[i].y) && (this->z >= min[i].z && this->z <= max[i].z))
+        return true;
+
+    }
+       return false;
 }

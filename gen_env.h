@@ -2,7 +2,7 @@
 #define _GEN_EVN_H_
 
 #include "block.h"
-
-Block **gen_env();
+#include "coor.h"
+Block **gen_env(Coordinate*, Coordinate*);
 
 #endif
