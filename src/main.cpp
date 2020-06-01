@@ -7,41 +7,33 @@
 int main(void)
 {
     dbg("Debug mode\n");
-    Game *game;
-    Result *ret;
 
     Field_3D *kiz;
     Coordinate *src;
     Coordinate *des;
+    Game *game;
+    Result *ret;
     int i;
 
-    //dbg("KIZ\n");
-    kiz = new Field_3D();
-
-    //dbg("SRC\n");
+    dbg("Init env\n");
+    kiz = new Field_3D(); // KOZ init in gen_env
     src = new Coordinate(100, 75, 95);
-
-    //dbg("DES\n");
     des = new Coordinate(155, 270, 60);
-
-    //dbg("Game\n");
+    //src = new Coordinate(9, 9, 1);
+    //des = new Coordinate(0, 0, 1);
     game = new Game (kiz, src, des);
 
-    // do A*
     dbg("A star\n");
     i = 0;
     while (!(ret = game->set())) {
-        dbg("Step %d\n", i++);
-        game->next_step();
-        //dbg("\nCkeckout Stack\n");
-        //game->dbg_stk_info();
-        //dbg("+++++++++++++\n");
-        //game->dbg_visual_2D(1);
-        //getchar();
+        dbg("Turn %d\n", i++);
+        game->next_step(); // Pop next edge and try adjacent blocks
+#if _DBG_
+        game->dbg_visual_2D(1);
+#endif
+        getchar();
     }
-    dbg("Finish\n");
-
-    dbg("Total %d steps\n", i);
+    dbg("\nTotal %d turns\n", i);
 
     return ret->get() == NULL;
 }

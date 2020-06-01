@@ -4,4 +4,6 @@
 !.gitignore
 !Makefile
 !README*
+!*/
 test*
+build/

@@ -7,9 +7,11 @@
 static struct Stk_Node *new_sn(Path *edge, struct Stk_Node *next)
 {
     struct Stk_Node *ret;
+
     ret = new struct Stk_Node;
     ret->edge = edge;
     ret->next = next;
+
     return ret;
 }
 
@@ -28,7 +30,6 @@ void Stack::insert(Path *edge)
         ptr = &((*ptr)->next);
         i++;
     }
-    //dbg("Insert @ place %d\n", i);
     *ptr = new_sn (edge, (*ptr));
 }
 
@@ -58,7 +59,6 @@ void Stack::remove(Block *tar)
     while (*ptr) {
         if ((*ptr)->edge == tar) {
             buf = *ptr;
-            //buf->edge->dbg_info();
             *ptr = (*ptr)->next;
             delete buf;
             break;
@@ -81,7 +81,6 @@ void Stack::dbg_info()
     i = 0;
     while (ptr) {
         dbg("Node %d\n", i++);
-        //ptr->edge->dbg_info();
         ptr = ptr->next;
         dbg("\n");
     }
@@ -91,32 +90,26 @@ Game::Game(Field_3D *kiz, Coordinate *src, Coordinate *des)
 {
     Path *src_p;
 
-    //dbg("Gen Src\n");
     src_p = new Path(*src, NULL, 0, src->euc_dis(*des));
     this->kiz = kiz;
     this->src = src;
     this->des = des;
-    //dbg("Set Src\n");
     kiz->set_position(src_p, *src);
-    //dbg("Insert Stack\n");
     this->edges.insert(src_p);
 }
 
 Result *Game::set()
 {
     Block *des;
-    Result *ret;
+    if (this->edges.is_empty())
+        return new Unreach();
 
     des = this->kiz->get_position (*(this->des));
-    ret = des->is_reached();
-
-    return ret;
+    return des->is_reached(); // Check destination's type, return None Null pointer if it not Empty
 }
 
 void Game::next_step()
 {
-    //this->dbg_info();
-
     Path *cur_edge;
     Coordinate *adjs;
 
@@ -125,33 +118,33 @@ void Game::next_step()
         dbg("Stack is empty");
         return;
     }
+
     dbg("Current edge: %p\n", cur_edge);
     cur_edge->dbg_info();
-
     adjs = cur_edge->get_adjs();
-
     for (int i=0; i<ADJ_SZ; i++) {
-        //dbg("\nADJ: %d\n", i);
         Block *next_edge;
         Path *result;
-        next_edge = this->kiz->get_position(adjs[i]);//block
 
-        if(next_edge == NULL)
+        next_edge = this->kiz->get_position(adjs[i]);
+        if(next_edge == NULL) // Out of range
             continue;
+
         dbg("Next EDGE: %p\n", next_edge);
-        //next_edge->dbg_info();
-        result = next_edge->update(cur_edge, this->des); // return path if next is path or empty
-        if (result) {
+        result = next_edge->update(cur_edge, this->des); // Return path if update, otherwise return NULL
+
+        if (result) { // Remove old one from stack and replace new on
             this->edges.remove(next_edge);
             delete next_edge;
-            next_edge = NULL;
-           // dbg("Update: %p\n", result);
-           // result->dbg_info();
+
             this->kiz->update(result);
             this->edges.insert(result);
         }
+
         result = NULL;
+        next_edge = NULL;
     }
+
     delete adjs;
     adjs = NULL;
 }
@@ -176,15 +169,17 @@ void Game::dbg_stk_info()
 void Game::dbg_visual_2D(int z)
 {
     Block *ptr;
+
     dbg(" \t");
-    for (int y=0; y<Y_MAX; y++)
+    for (int y=0; y<Y_MAX; y++) // Row number
         dbg("%d\t", y);
     dbg("\n");
+
     for (int x=0; x<X_MAX; x++) {
-        dbg("%d\t", x);
+        dbg("%d\t", x); // Column number
         for (int y=0; y<Y_MAX; y++) {
             ptr = this->kiz->get_position(Coordinate(x, y, z));
-            dbg("%d\t", (int)ptr->dbg_char());
+            dbg("%d\t", (int)ptr->dbg_char()); // KOZ:(-1), Empty(0)
         }
         dbg("\n");
     }

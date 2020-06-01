@@ -26,4 +26,10 @@ class Reached : public Result
         Route *get(); // TODO: debug print the route then return it
 };
 
+class Unreach : public Result
+{
+    public:
+        Unreach();
+        Route *get();
+};
 #endif

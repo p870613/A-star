@@ -43,6 +43,14 @@ static double max[9][3] = {{10.95, -4.7, 5.0},
                      {10.65, -8.9, 4.8}};
 
 static int data[X_MAX][Y_MAX][Z_MAX];
+bool is_koz(int x, int y, int z)
+{
+    for(int i = 0; i < 9; i++)
+        if((x >= min[i][0] && x <= max[i][0]) ||  (y >= min[i][1] && y <= max[i][1]) || (z >= min[i][2] && z <= max[i][2]))
+            return true;
+    return false;
+}
+
 Block **gen_env()
 {
 
@@ -58,12 +66,13 @@ Block **gen_env()
     }
 
    /*data init*/
+    /*
     dbg("Gen date\n");
     for(int i = 0; i < X_MAX; i++)
         for(int j = 0; j < Y_MAX; j ++)
             for(int k = 0; k < Z_MAX; k++)
                 data[i][j][k] = 0;
-/*
+
     for(int index = 0; index < 9; index++)
     {
         for(int i = min_index[index][0]; i <= max_index[index][0]; i++)
@@ -71,7 +80,7 @@ Block **gen_env()
                 for(int k = min_index[index][2]; k <= max_index[index][2]; k++)
                     data[i][j][k] = 1;
     }
-    */
+   */ 
 
     // manual set
     /*
@@ -94,12 +103,12 @@ Block **gen_env()
             for(int k = 0; k < Z_MAX; k++, offset++)
             {
                 Coordinate cur(i, j, k);
-                if(data[i][j][k] == 0)
+                if(!is_koz(i, j, k))
                 {
                     Empty *empty = new Empty(cur);
                     *(kiz + offset)  = empty;
                 }
-                else if(data[i][j][k] == 1)
+                else
                 {
                     Koz *koz = new Koz(cur);
                     *(kiz + offset) = koz;
