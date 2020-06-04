@@ -1,4 +1,5 @@
 #include "route.h"
+#define _DBG_ 1
 #include "debug.h"
 
 Route::Route(struct Route_Node *src)

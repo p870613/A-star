@@ -119,7 +119,7 @@ void Game::next_step()
         return;
     }
 
-    dbg("Current edge: %p\n", cur_edge);
+    //dbg("Current edge: %p\n", cur_edge);
     adjs = cur_edge->get_adjs();
     for (int i=0; i<ADJ_SZ; i++) {
         Block *next_edge;
@@ -129,7 +129,7 @@ void Game::next_step()
         if(next_edge == NULL) // Out of range
             continue;
 
-        dbg("Next EDGE: %p\n", next_edge);
+        //dbg("Next EDGE: %p\n", next_edge);
         result = next_edge->update(cur_edge, this->des); // Return path if update, otherwise return NULL
 
         if (result) { // Remove old one from stack and replace new on

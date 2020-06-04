@@ -17,10 +17,8 @@ int main(void)
 
     dbg("Init env\n");
     kiz = new Field_3D(); // KOZ init in gen_env
-    src = new Coordinate(100, 75, 95);
-    des = new Coordinate(155, 270, 60);
-    //src = new Coordinate(9, 9, 1);
-    //des = new Coordinate(0, 0, 1);
+    src = new Coordinate(0, 0, 0);
+    des = new Coordinate(4, 4, 0);
     game = new Game (kiz, src, des);
 
     dbg("A star\n");
