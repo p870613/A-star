@@ -94,8 +94,8 @@ Path *Block::update(Path* prev, Coordinate* des)
 
 Path *Empty::update(Path* prev, Coordinate* des)
 {
-    const int g = prev -> get_g() + 1;
-    const int h = des -> euc_dis(this -> get_coor());
+    dist_t g = prev -> get_g() + this->coor.euc_dis(prev->get_coor());
+    dist_t h = des -> euc_dis(this -> get_coor());
 
     Path *new_path = new Path(this->get_coor(), prev, g, h);
 
@@ -104,6 +104,7 @@ Path *Empty::update(Path* prev, Coordinate* des)
 
 Path *Koz::update(Path* prev, Coordinate* des)
 {
+    dbg("Hit\n");
     return NULL;
 }
 
@@ -112,7 +113,7 @@ Path *Path::update(Path* prev, Coordinate* des)
     Path *ret;
 
     const double step_len = this->coor.euc_dis(prev->coor);
-    dbg("Len: %lf\n", step_len);
+    //dbg("Len: %lf\n", step_len);
     ret = NULL;
     if((this -> g) > (prev -> g + step_len))
     {

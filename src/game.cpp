@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include "game.h"
-#define _DBG_ 0
+#define _DBG_ 1
 #include "debug.h"
 
 
@@ -119,7 +119,7 @@ void Game::next_step()
         return;
     }
 
-    dbg("Current edge: %p\n", cur_edge);
+    //dbg("Current edge: %p\n", cur_edge);
     adjs = cur_edge->get_adjs();
     for (int i=0; i<ADJ_SZ; i++) {
         Block *next_edge;
@@ -129,7 +129,7 @@ void Game::next_step()
         if(next_edge == NULL) // Out of range
             continue;
 
-        dbg("Next EDGE: %p\n", next_edge);
+        //dbg("Next EDGE: %p\n", next_edge);
         result = next_edge->update(cur_edge, this->des); // Return path if update, otherwise return NULL
 
         if (result) { // Remove old one from stack and replace new on
@@ -150,14 +150,12 @@ void Game::next_step()
 
 void Game::dbg_info()
 {
-    /*
     dbg("-- Game --\n");
     dbg("Source: \n");
     this->src->dbg_info();
     dbg("Destination: \n");
     this->des->dbg_info();
     dbg("----------\n");
-    */
 }
 
 void Game::dbg_stk_info()
