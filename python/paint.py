@@ -1,7 +1,7 @@
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
-import random
+import os
 min = [[10.75, -4.9, 4.8],
         [10.75, -6.5, 3.9],
         [9.95, -7.2, 3.9],
@@ -49,8 +49,8 @@ def add_line(s_x, s_y, s_z, d_x, d_y, d_z, color = "yellow"):
     z_line = np.linspace(s_z, d_z, 2000)
     ax.plot3D(x_line, y_line, z_line, color)
 
-def line_input():
-    f = open("path.txt")
+def line_input(path):
+    f = open(path)
     line = f.readline()
     coor_list = []
     while(line):
@@ -66,6 +66,8 @@ def line_input():
         coor_list.append(coor)
         line = f.readline()
     return coor_list
+
+
 def koz():
     for i in range(9):
         min[i][0] = int((min[i][0] - 9.95) * 100)
@@ -77,40 +79,50 @@ def koz():
         print(min[i])
         print(max[i])
 
-def f(x, y, z):
+def mapping(x, y, z):
     x = int((x - 9.95) * 100)
     y = int( (y + 9.75) * 100)
     z = int(( z -3.9) * 100)
     return x, y, z
 
+
 def add_point(x, y, z):
-    ax.scatter3D(z, y, z)
+    ax.scatter3D(x, y, z)
     
-        
+def get_file_path():
+    re = []
+    for dirpath, dirname, filename in os.walk('./path/'):
+        for f in filename:
+            re.append(f)
+    return re
+    
 if __name__ == "__main__":
-    print(f(11, -5.5, 4.33))
-    print(f(10.3, -7.5, 4.7))
+    #setting x, y, z axes
     ax.set_xlim(0,200) 
     ax.set_ylim(0,700) 
-    ax.set_zlim(0,200)
-    
+    ax.set_zlim(0,200) 
     plt.xticks(range(0, 200, 25))
     plt.yticks(range(0, 700, 25))
+
+    #setting koz
     koz()
     for i in range(9):
         plot_linear_cube(min[i][0], min[i][1], min[i][2], max[i][0], max[i][1], max[i][2])
-    total_point = line_input()
+    
+    total_file_path = get_file_path()
+    print(total_file_path)
 
-    '''
-    for i in range(len(total_point)):
-        add_point(total_point[i][0], total_point[i][1], total_point[i][2])
-        #print(total_point[i][0], total_point[i][1], total_point[i][2])
-        
-    '''
-    for i in range(len(total_point)):
-        if(i == 0):
-            continue
-        add_line(total_point[i][0], total_point[i][1], total_point[i][2],
+
+    for path in total_file_path:
+        total_point = line_input('path/' + path)
+        for i in range(len(total_point)):
+            if(i == 0):
+                add_point(total_point[i][0], total_point[i][1], total_point[i][2])
+                continue
+            if(i == len(total_point)-1):
+                add_point(total_point[i][0], total_point[i][1], total_point[i][2])
+            add_line(total_point[i][0], total_point[i][1], total_point[i][2],
                  total_point[i-1][0], total_point[i-1][1], total_point[i-1][2])
+
     plt.show()
     
