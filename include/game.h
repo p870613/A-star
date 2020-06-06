@@ -32,7 +32,6 @@ class Game
         Stack edges;
         struct Coordinate *src;
         struct Coordinate *des;
-        void dbg_info();
 
     public:
         Game(Field_3D *, Coordinate *, Coordinate *); // kiz src des
@@ -40,6 +39,7 @@ class Game
         void next_step();
         void dbg_stk_info();
         void dbg_visual_2D(int);
+        void dbg_info();
 };
 
 #endif

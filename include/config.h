@@ -8,7 +8,7 @@
 /*
 #define X_MAX 10
 #define Y_MAX 10
-#define Z_MAX 10
+#define Z_MAX 1
 */
 
 typedef double dist_t;

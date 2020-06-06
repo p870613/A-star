@@ -73,7 +73,6 @@ Block **gen_env()
         for(int j = 0; j < Y_MAX; j ++)
             for(int k = 0; k < Z_MAX; k++)
                 data[i][j][k] = 0;
-
     dbg("Gen date\n");
     for(int index = 0; index < 9; index++)
     {
@@ -87,14 +86,19 @@ Block **gen_env()
 
     /*
     // manual set
-    for (int i=0; i<4; i++)
-        data[3][i][1] = 1;
-    data[1][3][1] = 1;
-    data[2][3][1] = 1;
-    data[0][1][1] = 1;
-    data[1][1][1] = 1;
-    */
+    for (int i=4; i<10; i++)
+        data[i][2][0] = 1;
 
+    for (int i=0; i<8; i++)
+        data[i][5][0] = 1;
+
+    for (int i=0; i<9; i++)
+        data[i][8][0] = 1;
+    data[1][3][0] = 1;
+    data[2][3][0] = 1;
+    data[0][1][0] = 1;
+    data[1][1][0] = 1;
+    */
     /*kiz init*/
     dbg("Init nodes\n");
     int offset = 0;

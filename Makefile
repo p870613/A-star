@@ -14,7 +14,7 @@ main: $(OBJ_FILES)
 $(BLD_DIR)/main.o: $(SRC_DIR)/main.cpp
 	g++ -I$(ICD_DIR) -c $< -o $@
 
-$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp $(ICD_DIR)/%.h $(ICD_DIR)/debug.h
+$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp $(ICD_DIR)/%.h $(ICD_DIR)/debug.h $(ICD_DIR)/config.h
 	@mkdir -p $(BLD_DIR)
 	g++ -I$(ICD_DIR) -c $< -o $@
 

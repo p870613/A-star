@@ -12,6 +12,7 @@ class Coordinate
         int z;
     public:
         Coordinate();
+        Coordinate(double, double, double);
         Coordinate(int, int, int);
         bool operator>(Coordinate);
         int offset(int, int);

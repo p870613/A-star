@@ -10,6 +10,13 @@ Coordinate::Coordinate()
     this->z = -1;
 }
 
+Coordinate::Coordinate(double x, double y, double z)
+{
+    this->x = (x - 9.95) * 100;
+    this->y = (y + 9.75) * 100;
+    this->z = (z - 3.9) * 100;
+}
+
 Coordinate::Coordinate(int x, int y, int z)
 {
     this->x = x;

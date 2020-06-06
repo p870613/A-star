@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include "game.h"
-#define _DBG_ 0
+#define _DBG_ 1
 #include "debug.h"
 
 
@@ -150,14 +150,12 @@ void Game::next_step()
 
 void Game::dbg_info()
 {
-    /*
     dbg("-- Game --\n");
     dbg("Source: \n");
     this->src->dbg_info();
     dbg("Destination: \n");
     this->des->dbg_info();
     dbg("----------\n");
-    */
 }
 
 void Game::dbg_stk_info()
